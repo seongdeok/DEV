@@ -53,11 +53,21 @@ set laststatus=2 " turn on bottom bar
 let g:NERDTreeDirArrows=0
 map <F2> :NERDTreeToggle<CR>
 
+" copy selection to Clipboard in visual mode
+vmap <C-c> "+y
+" paste from clipboard in normal mode
+"nmap <C-v> "+p
 nmap <F3> <c-]>
 nmap <F4> <c-t>
-nmap <c-d> <dd>
+" auto indentation entire file
+nmap <C-f> gg=G
 noremap <TAB> <C-W>w
-
+" comment out selection
+vmap <C-k> :norm i//<CR>
+" uncomment // 
+vmap <C-m> :norm 2x<CR>
+"vmap <C-k> :s/^/\/\//<CR>:noh<CR>
+"vmap <C-m> :s/^\/\///<CR>:noh<CR>
 
 set csprg=/usr/bin/cscope
 set csto=0
