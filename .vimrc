@@ -8,43 +8,29 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set expandtab
-set paste
-"colorscheme molokai
-set t_Co=256
-let g:molokai_original = 1
-set autoindent
-set cindent
-set smartindent
-set ignorecase
-set backspace=eol,start,indent
-set showmatch
-set encoding=utf-8
-set fileencodings=utf-8,cp949
+filetype off
 
+set rtp+=~/.vim/bundle/vundle/
 
-"filetype off
+call vundle#rc()
+Bundle 'gmarik/vundle'
+Bundle 'git://git.wincent.com/command-t.git'
 
-
-set rtp+=~/.vim/bundle/Vundle.vim
+filetype plugin indent on
 call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
 Plugin 'The-NERD-Tree'
 Plugin 'AutoComplPop'
 Plugin 'taglist-plus'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'scrooloose/syntastic'
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'fatih/vim-go'
-Plugin 'vim-scripts/Conque-GDB'
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'morhetz/gruvbox'
+Plugin 'junegunn/fzf'
 call vundle#end()
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
- 
-
-
+"autocmd BufEnter * lcd %:p:h
 
 let g:airline#extensions#tabline#enabled = 1 " turn on buffer list
 let g:airline_theme='hybrid'
@@ -53,21 +39,12 @@ set laststatus=2 " turn on bottom bar
 let g:NERDTreeDirArrows=0
 map <F2> :NERDTreeToggle<CR>
 
-" copy selection to Clipboard in visual mode
-vmap <C-c> "+y
-" paste from clipboard in normal mode
-"nmap <C-v> "+p
 nmap <F3> <c-]>
 nmap <F4> <c-t>
-" auto indentation entire file
-nmap <C-f> gg=G
+nmap <c-d> <dd>
 noremap <TAB> <C-W>w
-" comment out selection
-vmap <C-k> :norm i//<CR>
-" uncomment // 
-vmap <C-m> :norm 2x<CR>
-"vmap <C-k> :s/^/\/\//<CR>:noh<CR>
-"vmap <C-m> :s/^\/\///<CR>:noh<CR>
+
+autocmd BufWritePre * %s/\s\+$//e
 
 set csprg=/usr/bin/cscope
 set csto=0
@@ -75,39 +52,21 @@ set cst
 set nocsverb
 if filereadable("./cscope.out")
 	cs add cscope.out
+else
+	cs add /home/seongdeok.han/develop/Reprogram_UnitTest/0501/cscope.out
 endif
 set csverb
 
+set tags=./tags
+execute pathogen#infect()
 
-let g:ConqueTerm_Color = 2                                                            
-let g:ConqueTerm_CloseOnEnd = 1                                                       
-let g:ConqueTerm_StartMessages = 0                                                    
-let g:ConqueGdb_SrcSplit = 'left'                                                                                      
-function DebugSession()                                                               
-    !g++ -o vimgdb -g % -std=c++11                                            
-	"redraw!                                                                           
-    if (filereadable("vimgdb"))                                                       
-        ConqueGdb vimgdb      
-		call conque_gdb#command("break main")
-		call conque_gdb#command("run")
-
-    else                                                                              
-        echom "Couldn't find debug file"                                              
-    endif                                                                             
-endfunction                                                                           
-function DebugSessionCleanup(term)                                                    
-    if (filereadable("vimgdb"))                                                       
-        let ds=delete("vimgdb")                                                       
-    endif                                                                             
-endfunction
-
-function DebugNext()
-	call conque_gdb#command("next")
-	call conque_gdb#command("info local")
-endfunction
-
-call conque_term#register_function("after_close", "DebugSessionCleanup")              
-nmap <leader>d :call DebugSession()<CR>  
-nmap <F5> :call conque_gdb#command("step")<CR>
-"nmap <F6> :call conque_gdb#command("next")<CR>
-nmap <F6> :call DebugNext()<CR>
+"colorscheme jellybeans
+colorscheme gruvbox
+set bg=dark
+nnoremap <C-h> :bp<CR>
+nnoremap <C-l> :bn<CR>
+nnoremap <C-o> :FZF<CR>
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-i': 'split',
+  \ 'ctrl-v': 'vsplit' }
