@@ -10,11 +10,7 @@ set softtabstop=4
 set expandtab
 filetype off
 
-set rtp+=~/.vim/bundle/vundle/
-
-call vundle#rc()
-Bundle 'gmarik/vundle'
-Bundle 'git://git.wincent.com/command-t.git'
+set rtp+=~/.vim/bundle/Vundle.vim
 
 filetype plugin indent on
 call vundle#begin()
@@ -58,7 +54,6 @@ endif
 set csverb
 
 set tags=./tags
-execute pathogen#infect()
 
 "colorscheme jellybeans
 colorscheme gruvbox
