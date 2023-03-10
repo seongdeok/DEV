@@ -1,4 +1,4 @@
-
+#!/usr/bin/sh
 sudo apt update
 sudo apt upgrade -y
 sudo apt install -y cmake terminator git build-essential cscope universal-ctags vim curl zsh fonts-powerline
