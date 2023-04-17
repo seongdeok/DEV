@@ -14,8 +14,8 @@ install_on_brew() {
   git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
   cp ./.vimrc ~/.vimrc
   vim +PluginInstall +qall
-  echo "export SHELL=/home/linuxbrew/.linuxbrew/bin/zsh" >> ~/.bashrc
-  echo "exec $SHELL" >> ~/.bashrc
+  echo "export SHELL=$(brew --prefix)/bin/zsh" >> ~/.bashrc
+  echo "exec $(brew --prefix)/bin/zsh" >> ~/.bashrc
 
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 }
