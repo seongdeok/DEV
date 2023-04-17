@@ -10,10 +10,13 @@ install_native() {
 }
 install_on_brew() {
   brew update
-  brew install cscope universal-ctags vim curl zsh zsh-syntax-highlighting zsh-autosuggestions
+  brew install cscope universal-ctags vim curl zsh
   git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
   cp ./.vimrc ~/.vimrc
   vim +PluginInstall +qall
+  echo "export SHELL=/home/linuxbrew/.linuxbrew/bin/zsh" >> ~/.bashrc
+  echo "exec $SHELL" >> ~/.bashrc
+
   sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 }
 
