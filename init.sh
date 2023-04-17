@@ -1,4 +1,4 @@
-if [ -f "/home/worker/.bee" ]; then
+if [ -d "/home/worker/.bee" ]; then
   TARGET="brew"
   echo "Install DEV Env with LinuxBrew"
 else
