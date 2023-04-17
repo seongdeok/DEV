@@ -6,7 +6,7 @@ install_native() {
   git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
   cp ./.vimrc ~/.vimrc
   vim +PluginInstall +qall
-  sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 }
 install_on_brew() {
   brew update
@@ -17,7 +17,7 @@ install_on_brew() {
   echo "export SHELL=/home/linuxbrew/.linuxbrew/bin/zsh" >> ~/.bashrc
   echo "exec $SHELL" >> ~/.bashrc
 
-  sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 }
 
 if [ "$1" = "brew" ]; then
