@@ -1,4 +1,4 @@
-#!/usr/bin/sh
+#!/bin/sh
 brew update
 brew install cscope universal-ctags vim curl zsh zsh-syntax-highlighting zsh-autosuggestions
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
