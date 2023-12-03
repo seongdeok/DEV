@@ -1,4 +1,4 @@
-#!/usr/bin/sh
+#!/bin/sh
 install_native() {
   sudo apt update
   sudo apt upgrade -y
