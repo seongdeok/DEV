@@ -5,6 +5,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/2048Game.dir/Board.cpp.o.d"
   "CMakeFiles/2048Game.dir/ConsoleDevice.cpp.o"
   "CMakeFiles/2048Game.dir/ConsoleDevice.cpp.o.d"
+  "CMakeFiles/2048Game.dir/MatrixHelper.cpp.o"
+  "CMakeFiles/2048Game.dir/MatrixHelper.cpp.o.d"
   "CMakeFiles/2048Game.dir/Unit.cpp.o"
   "CMakeFiles/2048Game.dir/Unit.cpp.o.d"
   "CMakeFiles/2048Game.dir/main.cpp.o"

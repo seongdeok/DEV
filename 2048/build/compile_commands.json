@@ -22,5 +22,11 @@
   "command": "/usr/bin/clang++   -g -std=gnu++11 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk -o CMakeFiles/2048Game.dir/Unit.cpp.o -c /Users/duk0669/Coding/2048/Unit.cpp",
   "file": "/Users/duk0669/Coding/2048/Unit.cpp",
   "output": "CMakeFiles/2048Game.dir/Unit.cpp.o"
+},
+{
+  "directory": "/Users/duk0669/Coding/2048/build",
+  "command": "/usr/bin/clang++   -g -std=gnu++11 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk -o CMakeFiles/2048Game.dir/MatrixHelper.cpp.o -c /Users/duk0669/Coding/2048/MatrixHelper.cpp",
+  "file": "/Users/duk0669/Coding/2048/MatrixHelper.cpp",
+  "output": "CMakeFiles/2048Game.dir/MatrixHelper.cpp.o"
 }
 ]

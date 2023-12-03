@@ -571,6 +571,30 @@ ConsoleDevice.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/2048Game.dir/build.make CMakeFiles/2048Game.dir/ConsoleDevice.cpp.s
 .PHONY : ConsoleDevice.cpp.s
 
+MatrixHelper.o: MatrixHelper.cpp.o
+.PHONY : MatrixHelper.o
+
+# target to build an object file
+MatrixHelper.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/2048Game.dir/build.make CMakeFiles/2048Game.dir/MatrixHelper.cpp.o
+.PHONY : MatrixHelper.cpp.o
+
+MatrixHelper.i: MatrixHelper.cpp.i
+.PHONY : MatrixHelper.i
+
+# target to preprocess a source file
+MatrixHelper.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/2048Game.dir/build.make CMakeFiles/2048Game.dir/MatrixHelper.cpp.i
+.PHONY : MatrixHelper.cpp.i
+
+MatrixHelper.s: MatrixHelper.cpp.s
+.PHONY : MatrixHelper.s
+
+# target to generate assembly for a file
+MatrixHelper.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/2048Game.dir/build.make CMakeFiles/2048Game.dir/MatrixHelper.cpp.s
+.PHONY : MatrixHelper.cpp.s
+
 Unit.o: Unit.cpp.o
 .PHONY : Unit.o
 
@@ -665,6 +689,9 @@ help:
 	@echo "... ConsoleDevice.o"
 	@echo "... ConsoleDevice.i"
 	@echo "... ConsoleDevice.s"
+	@echo "... MatrixHelper.o"
+	@echo "... MatrixHelper.i"
+	@echo "... MatrixHelper.s"
 	@echo "... Unit.o"
 	@echo "... Unit.i"
 	@echo "... Unit.s"

@@ -13,6 +13,7 @@ public :
     bool DoUp();
     bool DoDown();
     std::vector<std::vector<int>> getBoard();
+    bool generateUnitRandom();
 
 private : 
     int row;
@@ -20,6 +21,5 @@ private :
     bool rotateLeft();
     bool rotateRight();
     bool compressToRight(std::vector<int>& matrix);
-    bool generateUnitRandom();
 };
 
