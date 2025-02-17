@@ -10,3 +10,4 @@ brew install --cask karabiner-elements
 brew install --cask maccy
 brew install --cask alt-tab
 brew install --cask macs-fan-control
+brew install --cask craft
