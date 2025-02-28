@@ -9,4 +9,10 @@ sudo systemctl enable bluetooth
 sudo pacman -S adobe-source-han-sans-kr-fonts adobe-source-han-serif-kr-fonts
 yay -S ttf-nanum
 sudo pacman -S ibus ibus-hangul cscope universal-ctags curl zsh wofi waybar ttf-font-awesome
-sh -c "$(curl -fsSL [https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh](https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh))"
+
+sudo pacman -S --needed git base-devel
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+
+yay -S google-chrome
