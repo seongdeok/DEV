@@ -1,4 +1,4 @@
-pacman -S iw wpa_supplicant networkmanager
+sudo pacman -S iw wpa_supplicant networkmanager vim nvim
 sudo systemctl enable NetworkManager.service
 sudo systemctl start NetworkManager.service
 sudo systemctl enable wpa_supplicant.service
