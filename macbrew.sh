@@ -42,4 +42,9 @@ defaults write com.visualstudio.code.oss ApplePressAndHoldEnabled -bool false
 # this is helpful if you're using Vim in a PWA like code-server
 defaults write -g ApplePressAndHoldEnabled -bool false
 
+
+brew tap FelixKratz/formulae
+brew install borders
 ln -s ./borders ~/.config/borders
+brew services start borders
+
