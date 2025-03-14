@@ -48,3 +48,11 @@ brew install borders
 ln -s ./borders ~/.config/borders
 brew services start borders
 
+brew install neofetch
+
+brew install sketchybar
+brew install font-hack-nerd-font jq
+brew install font-sf-pro
+brew install --cask sf-symbols
+brew install --cask font-sketchybar-app-font
+
