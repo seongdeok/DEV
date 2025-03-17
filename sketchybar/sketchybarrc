@@ -19,7 +19,7 @@ ITEM_DIR="$CONFIG_DIR/items"
 
 sketchybar --bar height=35        \
                  blur_radius=30   \
-                 position=top     \
+                 position=bottom     \
                  sticky=off       \
                  padding_left=10  \
                  padding_right=10 \
