@@ -127,10 +127,10 @@ outer.right =      10
 alt-f = 'fullscreen'
 alt-shift-f = 'layout floating tiling'
 
-alt-shift-left = 'join-with left'
-alt-shift-down = 'join-with down'
-alt-shift-up = 'join-with up'
-alt-shift-right = 'join-with right'
+alt-shift-h = 'join-with left'
+alt-shift-j = 'join-with down'
+alt-shift-k = 'join-with up'
+alt-shift-l = 'join-with right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
 alt-slash = 'layout tiles horizontal vertical'
@@ -188,22 +188,6 @@ tell application "System Events"
     end tell
 end tell'
 '''
-ctrl-i = '''exec-and-forget osascript -e '
-tell application "System Events"
-    set isRunning to (count of processes whose name is "Safari") > 0
-end tell
-
-if isRunning then
-    tell application "Safari"
-        make new document at end of documents
-        activate
-    end tell
-else
-    do shell script "open -a Safari"
-end if
-'
-'''
-
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 [mode.service.binding]
