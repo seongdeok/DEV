@@ -6,10 +6,34 @@ return {
     end
   },
   {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    config = function() 
+      require("mason-tool-installer").setup({
+        ensure_installed = {
+          "prettier", -- prettier formatter
+          "stylua", -- lua formatter
+          "isort", -- python formatter
+          "black", -- python formatter
+          "pylint",
+          "eslint_d",
+        }
+      })
+    end
+
+  },
+  {
      "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "clangd", "neocmake"}
+        ensure_installed = { 
+          "lua_ls", 
+          "clangd", 
+          "neocmake",
+          "pyright", 
+          "ast_grep", 
+          "jsonls", 
+          "bashls",
+        }
       })
     end
   },
