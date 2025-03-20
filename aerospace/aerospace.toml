@@ -2,8 +2,8 @@
 
 # Notify Sketchybar about workspace change
 exec-on-workspace-change = ['/bin/bash', '-c',
-  'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE',
-  'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0'
+  '/usr/local/bin/sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
+  #'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0'
 ]
 
 
@@ -58,6 +58,11 @@ automatically-unhide-macos-hidden-apps = false
 if.app-name-regex-substring = 'Google Chrome'
 if.window-title-regex-substring = 'LGenie.AI - Google Chrome'
 run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'org.mozilla.firefox'
+run = 'layout floating'
+
 [[on-window-detected]]
 if.app-id = 'org.pqrs.Karabiner-Elements.Settings'
 run = 'layout floating'
@@ -70,6 +75,9 @@ run = 'layout floating'
 if.app-name-regex-substring = 'safari'
 run = 'layout floating'
 
+[[on-window-detected]]
+if.app-id = 'com.citrix.receiver.icaviewer.mac'
+run = 'move-node-to-workspace 3'
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'quicktime'
@@ -89,10 +97,10 @@ run = 'layout floating'
 [gaps]
 inner.horizontal = 10
 inner.vertical =   10
-outer.left =       10
+outer.left =       5
 outer.bottom =     37
 outer.top =        10
-outer.right =      10
+outer.right =      5
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -124,6 +132,8 @@ outer.right =      10
 # end tell'
 # '''
 
+cmd-h = [] #Disable hide application
+cmd-space = ['exec-and-forget /usr/bin/python3 /Users/duk0668/dotfiles/ai_front.py >> /tmp/log.txt 2>&1']
 alt-f = 'fullscreen'
 alt-shift-f = 'layout floating tiling'
 
@@ -177,7 +187,7 @@ alt-shift-enter = 'mode apps'
 alt-t = 'exec-and-forget osascript ~/dotfiles/launch_terminal.applescript'
 alt-b = 'exec-and-forget open -n /Applications/Google\ Chrome.app'
 # alt-e = 'exec-and-forget open -n /System/Library/CoreServices/Finder.app'
-alt-enter = 'exec-and-forget open -n /Applications/Ghostty.app'
+#alt-enter = 'exec-and-forget open -n /Applications/Ghostty.app'
 #alt-q = 'close --quit-if-last-window'
 alt-q = 'close'
 

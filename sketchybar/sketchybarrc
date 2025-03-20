@@ -21,8 +21,8 @@ sketchybar --bar height=35        \
                  blur_radius=30   \
                  position=bottom     \
                  sticky=off       \
-                 padding_left=10  \
-                 padding_right=10 \
+                 padding_left=100  \
+                 padding_right=50 \
                  color=$BAR_COLOR
 
 ##### Changing Defaults #####
@@ -47,6 +47,7 @@ sketchybar --default icon.font="SF Pro:Semibold:15.0"  \
 # -- Left Side Items --
 source $ITEM_DIR/spaces.sh
 source $ITEM_DIR/front_app.sh
+source $ITEM_DIR/aerospace.sh
 
 # -- Right Side Of Notch Items --
 source $ITEM_DIR/media.sh
