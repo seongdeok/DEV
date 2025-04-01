@@ -5,3 +5,6 @@ cd nerd-fonts
 ./install.sh
 cd ~
 eval "$(starship init bash)" >> ~/.bashrc
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+mkdir ~/.config
+ln -s ./nvim ~/.config/nvim
