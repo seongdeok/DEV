@@ -61,6 +61,6 @@ class windows:
 ai_window = windows.get_window_with_title("LGenie.AI")
 cur_workspace = get_current_workspace()
 if ai_window and ai_window.workspace == cur_workspace:
-    move_to_workspace(ai_window.id, "5", False)
+    move_to_workspace(ai_window.id, "x", False)
 else:
     move_to_workspace(ai_window.id, cur_workspace, True)

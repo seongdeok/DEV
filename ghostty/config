@@ -1,6 +1,5 @@
-theme = catppuccin-macchiato
+#theme = catppuccin-macchiato
 font-size = 15
-background-blur-radius = 20
 mouse-hide-while-typing = true
 window-decoration = true
 # keybind = global:cmd+/=toggle_quick_terminal

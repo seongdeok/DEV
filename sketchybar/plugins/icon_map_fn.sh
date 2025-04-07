@@ -11,8 +11,11 @@ function icon_map() {
   "VMware Fusion")
     icon_result=":vmware_fusion:"
     ;;
-  "Alacritty" | "Hyper" | "iTerm2" | "kitty" | "Terminal" | "终端" | "WezTerm")
+  "Alacritty" | "Ghostty" | "Hyper" | "iTerm2" | "kitty" | "Terminal" | "终端" | "WezTerm")
     icon_result=":terminal:"
+    ;;
+  "Ghostty")
+    icon_result=":ghostty:"
     ;;
   "Microsoft To Do" | "Things")
     icon_result=":things:"
@@ -410,7 +413,7 @@ function icon_map() {
   "Airmail")
     icon_result=":airmail:"
     ;;
-  "Microsoft Teams")
+  "Microsoft Teams" | "Teams")
     icon_result=":microsoft_teams:"
     ;;
   "Bear")
