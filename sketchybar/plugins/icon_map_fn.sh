@@ -11,8 +11,11 @@ function icon_map() {
   "VMware Fusion")
     icon_result=":vmware_fusion:"
     ;;
-  "Alacritty" | "Ghostty" | "Hyper" | "iTerm2" | "kitty" | "Terminal" | "终端" | "WezTerm")
+  "Alacritty" | "Ghostty" | "Hyper" | "iTerm2" | "kitty" | "Terminal" | "终端")
     icon_result=":terminal:"
+    ;;
+  "WezTerm")
+    icon_result=":wezterm:"
     ;;
   "Ghostty")
     icon_result=":ghostty:"
