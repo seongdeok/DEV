@@ -1,8 +1,8 @@
 daemon:
   modules:
-  - Xim
-  - Wayland
-  - Indicator
+    - Xim
+    - Wayland
+    - Indicator
 indicator:
   icon_color: Black
 log:
@@ -17,8 +17,13 @@ engine:
       result: ConsumeIfProcessed
     S-Space:
       behavior: !Toggle
-      - Hangul
-      - Latin
+        - Hangul
+        - Latin
+      result: Consume
+    C-Space:
+      behavior: !Toggle
+        - Hangul
+        - Latin
       result: Consume
     M-C-E:
       behavior: !Mode Emoji
@@ -28,18 +33,18 @@ engine:
       result: Bypass
     Muhenkan:
       behavior: !Toggle
-      - Hangul
-      - Latin
+        - Hangul
+        - Latin
       result: Consume
     AltR:
       behavior: !Toggle
-      - Hangul
-      - Latin
+        - Hangul
+        - Latin
       result: Consume
     Hangul:
       behavior: !Toggle
-      - Hangul
-      - Latin
+        - Hangul
+        - Latin
       result: Consume
   category_hotkeys:
     Hangul:
@@ -76,8 +81,8 @@ engine:
         result: ConsumeIfProcessed
   candidate_font: Noto Sans CJK KR
   xim_preedit_font:
-  - Noto Sans CJK KR
-  - 15.0
+    - Noto Sans CJK KR
+    - 15.0
   latin:
     layout: Qwerty
     preferred_direct: true
@@ -87,6 +92,6 @@ engine:
     preedit_johab: Needed
     addons:
       all:
-      - ComposeChoseongSsang
+        - ComposeChoseongSsang
       dubeolsik:
-      - TreatJongseongAsChoseong
+        - TreatJongseongAsChoseong
