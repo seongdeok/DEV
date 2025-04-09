@@ -1,18 +1,24 @@
-sudo pacman -S iw wpa_supplicant networkmanager vim neovim zsh
-sudo systemctl enable NetworkManager.service
-sudo systemctl start NetworkManager.service
-sudo systemctl enable wpa_supplicant.service
-sudo systemctl start wpa_supplicant.service
-sudo pacman -S bluez bluez-utils gnome-bluetooth
-sudo systemctl start bluetooth
-sudo systemctl enable bluetooth
 sudo pacman -S adobe-source-han-sans-kr-fonts adobe-source-han-serif-kr-fonts
 yay -S ttf-nanum
-sudo pacman -S ibus ibus-hangul cscope universal-ctags curl zsh wofi waybar ttf-font-awesome
+sudo pacman -S cscope universal-ctags curl ttf-font-awesome ghostty
+yay -S kime ttf-nerd-fonts-symbols-mono tmux neovim ripgrep waynergy google-chrome
+mkdir -p ~/.config/tmux
+mkdir -p ~/.config/.tmux
+# nvim
+ln -s $PWD/nvim ~/.config/nvim
+echo 'alias vi=nvim' >> ~/.zshrc
+# tmux
+ln -s $PWD/.tmux.conf ~/.config/tmux/tmux.conf
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
-sudo pacman -S --needed git base-devel
-git clone https://aur.archlinux.org/yay.git
-cd yay
-makepkg -si
+#kime
+ln -s $PWD/kime ~/.config/kime
 
-yay -S google-chrome
+#wayne3rgy
+ln -s $PWD/waynergy ~/.config/waynergy
+#hyprland settings
+ln -s $PWD/hypr_user_config ~/.config/hypr/UserConfigs
+
+#ghostty
+ln -s $PWD/ghostty ~/.config/ghostty
+
