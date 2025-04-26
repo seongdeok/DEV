@@ -2,6 +2,7 @@
 
 source "$CONFIG_DIR/colors.sh" # Loads all defined colors
 
+echo "CHANGED $1 $2 $INFO"
 
 if [ -z "$FOCUSED_WORKSPACE" ]; then
   FOCUSED_WORKSPACE=$(aerospace list-workspaces --focused)
@@ -18,4 +19,13 @@ else
                             icon.color=$ACCENT_COLOR
 fi
 
+label=""
+while IFS='|' read -r app title; do
+  app_icon=$(~/dotfiles/sketchybar/plugins/icon_map_fn.sh "$app")
+  label+="$app_icon"
+done < <(aerospace list-windows --workspace "$1" --format "%{app-name}|%{window-title}")
+if [ -z "$label" ]; then
+  label=":close:"
+fi
 
+sketchybar --set workspace.$1 label=$label

@@ -46,6 +46,7 @@ class windows:
         window_list = []
         for str in list:
             info = str.split("|")
+            print(info)
             window_list.append(windows(info[0], info[1], info[2], info[3], info[4]))
         return window_list
 

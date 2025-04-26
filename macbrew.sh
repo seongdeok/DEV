@@ -14,6 +14,7 @@ brew install --cask macs-fan-control
 brew install --cask visual-studio-code
 brew install --cask font-meslo-for-powerlevel10k
 brew install ripgrep
+brew install bash
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
