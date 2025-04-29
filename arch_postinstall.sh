@@ -1,7 +1,6 @@
 sudo pacman -S adobe-source-han-sans-kr-fonts adobe-source-han-serif-kr-fonts
-yay -S ttf-nanum
 sudo pacman -S cscope universal-ctags curl ttf-font-awesome ghostty
-yay -S kime ttf-nerd-fonts-symbols-mono tmux neovim ripgrep waynergy google-chrome
+yay -S --no-confirm kime-bin ttf-nerd-fonts-symbols-mono tmux neovim ripgrep waynergy google-chrome ttf-nanum icaclient ripgrep teams-for-linux-bin ghostty visual-studio-code-bin
 mkdir -p ~/.config/tmux
 mkdir -p ~/.config/.tmux
 # nvim
