@@ -11,6 +11,7 @@ return {
 	-- macos_window_background_blur = 40,
 	--macos_window_background_blur = 30,
 	native_macos_fullscreen_mode = false,
+	scrollback_lines = 100000,
 
 	-- window_background_image = '/Users/omerhamerman/Downloads/3840x1080-Wallpaper-041.jpg',
 	-- window_background_image_hsb = {
