@@ -6,7 +6,6 @@ keymap.set("n", "<leader>l", "<C-w>l", {})
 keymap.set("n", "<leader>j", "<C-w>j", {})
 keymap.set("n", "<leader>k", "<C-w>k", {})
 
-keymap.set("n", "<leader>q", "<C-w>q", {})
 keymap.set("n", "<leader>v", ":vs<CR>", {})
 keymap.set("n", "<leader>s", ":sp<CR>", {})
 keymap.set("i", "jk", "<ESC>", {})
@@ -17,4 +16,6 @@ keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Go to next tab" }) --  
 keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" }) --  go to previous tab
 keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" }) --  move current buffer to new tab
 
-keymap.set("n", "<Tab>", ":bn<CR>", { desc = "Open current buffer in new tab" }) --  move current buffer to new tab
+keymap.set("n", "<Tab>", ":bn<CR>", { desc = "next buffer" })
+keymap.set("n", "<S-Tab>", ":bp<CR>", { desc = "previous buffer" })
+keymap.set("n", "<leader>q", ":bd<CR>", { desc = "Close buffer" })
