@@ -1,7 +1,6 @@
 bindkey -v  # vi 모드 사용
 
-# vi 입력 모드 (insert mode)
-bindkey -M viins '^k' up-line-or-history
-bindkey -M viins '^j' down-line-or-history
-bindkey -M viins '^h' backward-char
-bindkey -M viins '^l' forward-char
+bindkey '^h' backward-char        # ←
+bindkey '^l' forward-char         # →
+bindkey '^j' down-line-or-history # ↓
+bindkey '^k' up-line-or-history   # ↑
