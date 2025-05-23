@@ -1,0 +1,54 @@
+"$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
+
+[manager]
+ratio = [1, 3, 4]
+sort_by = "alphabetical"          # ← 유효한 정렬 옵션
+sort_sensitive = false
+sort_reverse = false
+show_hidden = true                # ← 숨김 파일 기본 표시
+show_symlink = true
+sort_dir_first = true
+linemode = "none"
+scrolloff = 5
+
+[preview]
+max_width = 100
+max_height = 40
+cache_dir = "/tmp/yazi_preview"
+image_filter = "ueberzugpp"
+use_bat = true
+tab_size = 2
+image_quality = 75
+sixel_fraction = 15
+ueberzug_scale = 1
+ueberzug_offset = [0, 0, 0, 0]
+
+[tasks]
+micro_workers = 10
+macro_workers = 25
+bizarre_retry = 5
+image_alloc = 536870912
+image_bound = [0, 0]
+suppress_preload = false
+
+[log]
+enabled = false
+
+[headsup]
+# 알림 스타일 설정 가능
+
+[input]
+cd_title = "Change directory:"
+cd_origin = "top-center"
+cd_offset = [0, 2, 50, 3]
+
+[select]
+open_title = "Open with:"
+open_origin = "hovered"
+open_offset = [0, 1, 50, 7]
+
+[which]
+sort_by = "none"
+sort_sensitive = false
+sort_reverse = false
+

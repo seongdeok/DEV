@@ -1,0 +1,7 @@
+[keys.normal]
+"c" = "shell nvim $1"
+"v" = "shell code $1"
+"z" = "plugin zoxide_jump"
+"f" = "shell fd | fzf | xargs yazi"
+"F" = "shell rg --files | fzf | xargs yazi"
+

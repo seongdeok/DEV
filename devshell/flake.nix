@@ -11,6 +11,9 @@
       let
         pkgs = import nixpkgs { inherit system; };
         configDir = "$PWD/.config-devshell";
+        fzfPath = "${pkgs.fzf}/share/fzf";
+        zshPath = "${pkgs.zsh}/bin/zsh";
+
       in
       {
         devShells.default = pkgs.mkShell {
@@ -42,6 +45,7 @@
             wget
             unzip
             jq
+            ueberzugpp
 
             # System monitoring
             htop
@@ -56,6 +60,7 @@
             tldr
             dog
             navi
+
           ];
 
           shellHook = ''
@@ -64,11 +69,21 @@
             # zsh plugin 경로 export
             export ZSH_AUTOSUGGESTIONS_PATH=${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
             export ZSH_SYNTAX_HIGHLIGHTING_PATH=${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+          # make tmux.conf
+            tmpl="$PWD/.config-devshell/tmux/tmux.conf.template"
+            out="$PWD/.config-devshell/tmux/tmux.conf"
+            [ -f "$out" ] && rm -f "$out"
+            sed "s|{{ZSH_PATH}}|${zshPath}|" "$tmpl" > "$out"
 
-            # Use isolated zshrc
-            export ZDOTDIR=${configDir}/zsh 
+          # Use isolated zshrc
+              export ZDOTDIR=${configDir}/zsh 
+              export FZF_KEYBINDINGS_PATH="${fzfPath}/key-bindings.zsh"
+            export FZF_COMPLETION_PATH="${fzfPath}/completion.zsh"
+            export SHELL=$(which zsh)
+            export TERM="xterm-256color"
             exec zsh
           '';
         };
       });
 }
+

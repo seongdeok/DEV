@@ -12,12 +12,12 @@ export FZF_ALT_C_COMMAND='fd --type d'
 export FZF_PREVIEW_COMMAND='bat --style=numbers --color=always --line-range :500 {}'
 
 # Nix 설치 경로에서 로딩
-if [ -f "${pkgs_fzf_bindings:-/nix/store/*fzf*/share/fzf/key-bindings.zsh}" ]; then
-  source ${pkgs_fzf_bindings:-/nix/store/*fzf*/share/fzf/key-bindings.zsh}
+if [ -f "$FZF_KEYBINDINGS_PATH" ]; then
+  source $FZF_KEYBINDINGS_PATH
 fi
 
-if [ -f "${pkgs_fzf_completion:-/nix/store/*fzf*/share/fzf/completion.zsh}" ]; then
-  source ${pkgs_fzf_completion:-/nix/store/*fzf*/share/fzf/completion.zsh}
+if [ -f "$FZF_COMPLETION_PATH" ]; then
+  source $FZF_COMPLETION_PATH
 fi
 
 
@@ -36,6 +36,8 @@ alias ls='eza --icons'
 alias ll='eza -lah --icons'
 alias grep='rg'
 alias cat='bat'
+
+eval "$(zoxide init zsh)"
 
 # Starship prompt
 eval "$(starship init zsh)"
