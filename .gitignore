@@ -4,4 +4,5 @@ devshell/.config-devshell/tmux/plugins/
 devshell/.config-devshell/cache/
 devshell/.config-devshell/local/
 devshell/.config-devshell/state/
+devshell/.config-devshell/nvim/
 devshell/nix
