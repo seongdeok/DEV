@@ -1,3 +1,7 @@
 .DS_Store
 nvim/lazy-lock.json
 devshell/.config-devshell/tmux/plugins/
+devshell/.config-devshell/cache/
+devshell/.config-devshell/local/
+devshell/.config-devshell/state/
+devshell/nix
