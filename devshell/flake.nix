@@ -65,6 +65,10 @@
 
           shellHook = ''
             export XDG_CONFIG_HOME=${configDir}
+            export XDG_DATA_HOME=${configDir}/local/share
+            export XDG_CACHE_HOME=${configDir}/cache
+            export XDG_STATE_HOME=${configDir}/state"
+
             export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship.toml"
             # zsh plugin 경로 export
             export ZSH_AUTOSUGGESTIONS_PATH=${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -76,8 +80,8 @@
             sed "s|{{ZSH_PATH}}|${zshPath}|" "$tmpl" > "$out"
 
           # Use isolated zshrc
-              export ZDOTDIR=${configDir}/zsh 
-              export FZF_KEYBINDINGS_PATH="${fzfPath}/key-bindings.zsh"
+            export ZDOTDIR=${configDir}/zsh 
+            export FZF_KEYBINDINGS_PATH="${fzfPath}/key-bindings.zsh"
             export FZF_COMPLETION_PATH="${fzfPath}/completion.zsh"
             export SHELL=$(which zsh)
             export TERM="xterm-256color"
