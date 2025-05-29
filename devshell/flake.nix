@@ -67,7 +67,7 @@
             export XDG_CONFIG_HOME=${configDir}
             export XDG_DATA_HOME=${configDir}/local/share
             export XDG_CACHE_HOME=${configDir}/cache
-            export XDG_STATE_HOME=${configDir}/state"
+            export XDG_STATE_HOME=${configDir}/state
 
             export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship.toml"
             # zsh plugin 경로 export
