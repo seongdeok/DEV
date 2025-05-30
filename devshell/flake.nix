@@ -85,6 +85,8 @@
             export FZF_COMPLETION_PATH="${fzfPath}/completion.zsh"
             export SHELL=$(which zsh)
             export TERM="xterm-256color"
+            export LANG=en_US.UTF-8
+            export LC_ALL=en_US.UTF-8
             exec zsh
           '';
         };
