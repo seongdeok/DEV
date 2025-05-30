@@ -6,3 +6,5 @@ devshell/.config-devshell/local/
 devshell/.config-devshell/state/
 devshell/.config-devshell/nvim/
 devshell/nix
+devshell/.config-devshell/nvim
+devshell/.config-devshell/tmux/tmux.conf
