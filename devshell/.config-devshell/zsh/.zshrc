@@ -1,6 +1,7 @@
 # .config-devshell/zsh/.zshrc
 
 # zsh plugins
+typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[command]='fg=cyan'
 ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=red'
 ZSH_HIGHLIGHT_STYLES[argument]='fg=white'
