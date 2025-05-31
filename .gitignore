@@ -8,3 +8,4 @@ devshell/.config-devshell/nvim/
 devshell/nix
 devshell/.config-devshell/nvim
 devshell/.config-devshell/tmux/tmux.conf
+devshell/.nix-shims
