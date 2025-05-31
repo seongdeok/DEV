@@ -79,6 +79,7 @@
           ];
 
           shellHook = ''
+            export TERM=xterm-256color
             # ────────────────────────────────────────────────────────────
             # 1) XDG 기본 경로 설정
             export XDG_CONFIG_HOME=${cfgDir}
@@ -124,7 +125,7 @@ EOF
             export ZSH_SYNTAX_HIGHLIGHTING_PATH=${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
             export FZF_KEYBINDINGS_PATH=${pkgs.fzf}/share/fzf/key-bindings.zsh
             export FZF_COMPLETION_PATH=${pkgs.fzf}/share/fzf/completion.zsh
-
+            export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border --info=inline --color=bg+:#1e1e2e,fg+:#f5e0dc,header:#f38ba8,pointer:#89b4fa"
             # 8) zshrc 위치 설정
             export ZDOTDIR=$XDG_CONFIG_HOME/zsh
 
