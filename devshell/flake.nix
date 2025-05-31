@@ -119,8 +119,9 @@ EOF
             # 6) .nix-shims 경로를 PATH 맨 앞에 추가
             export PATH="$PWD/.nix-shims:$PATH"
 
-            # 7) 편의 alias
-            alias vi=nvim
+            # 7) zsh
+            export ZSH_AUTOSUGGESTIONS_PATH=${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+            export ZSH_SYNTAX_HIGHLIGHTING_PATH=${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
             # 8) zshrc 위치 설정
             export ZDOTDIR=$XDG_CONFIG_HOME/zsh
