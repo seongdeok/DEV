@@ -1,2 +1,5 @@
-./nix develop . --extra-experimental-features 'nix-command flakes'
-
+./nix develop \
+        --impure \
+        --accept-flake-config \
+        --extra-experimental-features 'nix-command flakes' \
+        .
