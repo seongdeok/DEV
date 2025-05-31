@@ -122,6 +122,8 @@ EOF
             # 7) zsh
             export ZSH_AUTOSUGGESTIONS_PATH=${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
             export ZSH_SYNTAX_HIGHLIGHTING_PATH=${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+            export FZF_KEYBINDINGS_PATH=${pkgs.fzf}/share/fzf/key-bindings.zsh
+            export FZF_COMPLETION_PATH=${pkgs.fzf}/share/fzf/completion.zsh
 
             # 8) zshrc 위치 설정
             export ZDOTDIR=$XDG_CONFIG_HOME/zsh
