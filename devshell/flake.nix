@@ -15,20 +15,19 @@
       in
       {
         devShells.default = pkgs.mkShell {
-          # ─── 빌드에 필요한 패키지 ───
           packages = with pkgs; [
-            # Shell & Prompt
+            # ─── Shell & Prompt ───
             zsh
             starship
             zsh-autosuggestions
             zsh-syntax-highlighting
 
-            # Terminal Utilities
+            # ─── Terminal Utilities ───
             fzf
             thefuck
             zoxide
 
-            # File Search / Navigation
+            # ─── File Search / Navigation ───
             fd
             bat
             eza
@@ -36,7 +35,7 @@
             ripgrep
             yazi
 
-            # Dev Tools
+            # ─── Dev Tools ───
             neovim
             tmux
             git
@@ -46,7 +45,7 @@
             jq
             ueberzugpp
 
-            # System Monitoring
+            # ─── System Monitoring ───
             htop
             bottom    # btm
             btop
@@ -55,26 +54,33 @@
             procs
             neofetch
 
-            # Info / Help
+            # ─── Info / Help ───
             tldr
             dog
             navi
 
-            # Node.js 18 LTS (npm 9.x 내장)
+            # ─── Node.js 18 LTS (npm 9.x 내장) ───
             nodejs_18
-            gnutar
-            # Python3 + pip + venv + requests + rich
+            nodePackages.npm      # ← “npm” 바이너리를 직접 추가
+
+            # ─── Python3 + pip + venv + requests + rich ───
             (python3.withPackages (ps: with ps; [
               ps.pip
               ps.virtualenv
               ps.requests
               ps.rich
             ]))
+
+            # ─── GNU tar (버전 출력용) ───
+            gnutar
+
+            # ─── bsdtar from libarchive (Mason unpack용) ───
+            libarchive
           ];
 
-          # ─── 쉘에 진입할 때 실행되는 설정 ───
           shellHook = ''
-            # 1) XDG 기본 경로
+            # ────────────────────────────────────────────────────────────
+            # 1) XDG 기본 경로 설정
             export XDG_CONFIG_HOME=${cfgDir}
             export XDG_DATA_HOME=${cfgDir}/local/share
             export XDG_CACHE_HOME=${cfgDir}/cache
@@ -90,30 +96,36 @@
             [ -f "$out" ] && rm -f "$out"
             sed "s|{{ZSH_PATH}}|${zshBin}|" "$tmpl" > "$out"
 
-            # 4) npm 래퍼 (깨진 npm 스크립트 우회)
+            # 4) .nix-shims 디렉터리 초기화
             rm -rf .nix-shims
             mkdir -p .nix-shims
-            NPM_CLI=$(dirname "$(which node)")/../lib/node_modules/npm/bin/npm-cli.js
-            cat > .nix-shims/npm <<'EOF'
-#!/usr/bin/env bash
-exec node "$NPM_CLI" "$@"
-EOF
-            chmod +x .nix-shims/npm
 
-            # 5) python / node shim
+            # 5) python3 / node / tar 래퍼
+            #    (– ‘npm’ 대신, nodePackages.npm 으로 경로 문제 해결)
             ln -s "$(which python3)" .nix-shims/python
             ln -s "$(which node)"    .nix-shims/node
-            ln -s "$(which tar)"     .nix-shims/tar
 
-            # 6) shim 경로 우선
+            #    GNU tar 버전 확인 시 gnutar, 그 외는 bsdtar 사용
+            cat > .nix-shims/tar <<EOF
+#!/usr/bin/env bash
+if [ "\$1" = "--version" ] || [ "\$1" = "-V" ]; then
+  exec "${pkgs.gnutar}/bin/tar" "\$@"
+else
+  exec "${pkgs.libarchive}/bin/bsdtar" "\$@"
+fi
+EOF
+            chmod +x .nix-shims/tar
+
+            # 6) .nix-shims 경로를 PATH 맨 앞에 추가
             export PATH="$PWD/.nix-shims:$PATH"
 
             # 7) 편의 alias
             alias vi=nvim
 
+            # 8) zshrc 위치 설정
             export ZDOTDIR=$XDG_CONFIG_HOME/zsh
 
-            # 8) zsh로 교체
+            # 9) zsh로 진입
             exec zsh
           '';
         };
