@@ -36,6 +36,7 @@ alias ls='eza --icons'
 alias ll='eza -lah --icons'
 alias grep='rg'
 alias cat='bat'
+alias vi='nvim'
 
 eval "$(zoxide init zsh)"
 
