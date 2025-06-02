@@ -60,8 +60,13 @@
             navi
 
             # ─── Node.js 18 LTS (npm 9.x 내장) ───
-            nodejs_18
-            nodePackages.npm      # ← “npm” 바이너리를 직접 추가
+            nodejs_20
+            gitui
+            delta
+            broot
+            fd
+            mc
+            lsd
 
             # ─── Python3 + pip + venv + requests + rich ───
             (python3.withPackages (ps: with ps; [
