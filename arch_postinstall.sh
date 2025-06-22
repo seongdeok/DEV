@@ -1,5 +1,5 @@
 sudo pacman -S adobe-source-han-sans-kr-fonts adobe-source-han-serif-kr-fonts
-sudo pacman -S cscope universal-ctags curl ttf-font-awesome ghostty
+sudo pacman -S cscope universal-ctags curl ttf-font-awesome ghostty bluez bluez-utils network-manager-applet
 yay -S kime-bin ttf-nerd-fonts-symbols-mono tmux neovim ripgrep waynergy google-chrome ttf-nanum icaclient ripgrep teams-for-linux-bin ghostty visual-studio-code-bin
 yay -S appimagelauncher-bin
 yay -S zoxide yazi fd bat eza ripgrep ueberzugpp btop duf dust procs tldr nodejs npm zip unzip
