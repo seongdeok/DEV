@@ -13,6 +13,13 @@ return {
 	native_macos_fullscreen_mode = false,
 	scrollback_lines = 100000,
 
+	window_padding = {
+		left = 6,
+		right = 6,
+		top = 0,
+		bottom = 20,
+	},
+
 	-- window_background_image = '/Users/omerhamerman/Downloads/3840x1080-Wallpaper-041.jpg',
 	-- window_background_image_hsb = {
 	-- 	brightness = 0.01,
