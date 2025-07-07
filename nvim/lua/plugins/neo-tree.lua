@@ -12,7 +12,13 @@ return {
 				filtered_items = {
 					hide_dotfiles = false,
 					hide_gitignored = false,
+					hide_by_name = {},
+					never_show = {},
 				},
+				follow_current_file = {
+					enable = true,
+				},
+				use_libuv_file_watcher = true,
 			},
 		})
 
