@@ -24,3 +24,4 @@ ln -s $PWD/hypr_user_config ~/.config/hypr/UserConfigs
 #ghostty
 ln -s $PWD/ghostty ~/.config/ghostty
 
+ln -s $PWD/.wezterm.lua ~/.wezterm.lua
