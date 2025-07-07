@@ -27,7 +27,11 @@ opt.signcolumn = "yes" -- show sign column so that text doesn't shift
 opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line or insert mode start position
 
 -- clipboard
+<<<<<<< Updated upstream
 opt.clipboard=""
+=======
+opt.clipboard = "" -- use system clipboard as default register
+>>>>>>> Stashed changes
 
 -- split windows
 opt.splitright = true -- split vertical window to the right

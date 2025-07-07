@@ -1,13 +1,14 @@
 local wezterm = require("wezterm")
 return {
-	-- front_end = "OpenGL",
-	front_end = "WebGpu",
+	enable_wayland = false,
+	front_end = "OpenGL",
+	--front_end = "WebGpu",
 	adjust_window_size_when_changing_font_size = false,
 	-- color_scheme = 'termnial.sexy',
 	color_scheme = "Catppuccin Mocha",
 	enable_tab_bar = false,
-	font_size = 16.0,
-	font = wezterm.font("Hack Nerd Font Mono Regular"),
+	font_size = 15.0,
+	font = wezterm.font("Hack Nerd Font"),
 	-- macos_window_background_blur = 40,
 	--macos_window_background_blur = 30,
 	native_macos_fullscreen_mode = false,
@@ -16,10 +17,9 @@ return {
 	window_padding = {
 		left = 6,
 		right = 6,
-		top = 0,
-		bottom = 20,
+		top = 20,
+		bottom = 40,
 	},
-
 	-- window_background_image = '/Users/omerhamerman/Downloads/3840x1080-Wallpaper-041.jpg',
 	-- window_background_image_hsb = {
 	-- 	brightness = 0.01,
@@ -59,4 +59,6 @@ return {
 			action = wezterm.action.OpenLinkAtMouseCursor,
 		},
 	},
+	default_cursor_style = "BlinkingBar",
+	force_reverse_video_cursor = true,
 }

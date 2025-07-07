@@ -4,6 +4,10 @@ yay -S kime-bin ttf-nerd-fonts-symbols-mono tmux neovim ripgrep waynergy google-
 
 yay -S zoxide yazi fd bat eza ripgrep ueberzugpp btop duf dust procs tldr nodejs npm zip unzip
 yay -S wezterm-git
+#yay -S sddm blueman network-manager-applet
+sudo pacman -S networkmanager nm-connection-editor bluez bluez-utils polkit-gnome
+sudo systemctl enable --now NetworkManager
+sudo systemctl enable --now bluetooth
 mkdir -p ~/.config/tmux
 mkdir -p ~/.config/.tmux
 # nvim
