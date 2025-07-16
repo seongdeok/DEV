@@ -23,8 +23,19 @@ Item {
         anchors.rightMargin: 4
 
         Resource {
+            iconName: "settings_slow_motion"
+            percentage: ResourceUsage.cpuUsage
+            displayText: "CPU"  // Display "CPU" text instead of icon
+            shown: Config.options.bar.resources.alwaysShowCpu || 
+                !(MprisController.activePlayer?.trackTitle?.length > 0) ||
+                root.alwaysShowAllResources
+        }
+
+        Resource {
             iconName: "memory"
             percentage: ResourceUsage.memoryUsedPercentage
+            displayText: "Mem"  // Display "Mem" text instead of icon
+            Layout.leftMargin: 4
         }
 
         Resource {
@@ -32,15 +43,6 @@ Item {
             percentage: ResourceUsage.swapUsedPercentage
             shown: (Config.options.bar.resources.alwaysShowSwap && percentage > 0) || 
                 (MprisController.activePlayer?.trackTitle == null) ||
-                root.alwaysShowAllResources
-            Layout.leftMargin: shown ? 4 : 0
-        }
-
-        Resource {
-            iconName: "settings_slow_motion"
-            percentage: ResourceUsage.cpuUsage
-            shown: Config.options.bar.resources.alwaysShowCpu || 
-                !(MprisController.activePlayer?.trackTitle?.length > 0) ||
                 root.alwaysShowAllResources
             Layout.leftMargin: shown ? 4 : 0
         }

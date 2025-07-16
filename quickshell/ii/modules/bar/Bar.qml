@@ -465,11 +465,60 @@ Scope {
                                             text: Network.materialSymbol
                                             iconSize: Appearance.font.pixelSize.larger
                                             color: rightSidebarButton.colText
+                                            
+                                            MouseArea {
+                                                anchors.fill: parent
+                                                onClicked: {
+                                                    Quickshell.execDetached(["bash", "-c", `${Network.ethernet ? Config.options.apps.networkEthernet : Config.options.apps.network}`])
+                                                }
+                                            }
+                                        }
+                                        Item {
+                                            Layout.rightMargin: indicatorsRowLayout.realSpacing
+                                            Layout.fillHeight: true
+                                            implicitWidth: volumeIcon.width + volumeText.width + 5
+                                            
+                                            Row {
+                                                anchors.centerIn: parent
+                                                spacing: 5
+                                                
+                                                MaterialSymbol {
+                                                    id: volumeIcon
+                                                    text: Audio.sink?.audio?.muted ? "volume_off" : 
+                                                          Audio.value < 0.33 ? "volume_down" : 
+                                                          Audio.value < 0.66 ? "volume_up" : "volume_up"
+                                                    iconSize: Appearance.font.pixelSize.larger
+                                                    color: rightSidebarButton.colText
+                                                }
+                                                
+                                                Text {
+                                                    id: volumeText
+                                                    text: `${Math.round((Audio.sink?.audio?.volume || 0) * 100)}%`
+                                                    font.pixelSize: Appearance.font.pixelSize.smaller
+                                                    color: rightSidebarButton.colText
+                                                    anchors.verticalCenter: parent.verticalCenter
+                                                }
+                                            }
+                                            
+                                            MouseArea {
+                                                anchors.fill: parent
+                                                hoverEnabled: true
+                                                onClicked: {
+                                                    Quickshell.execDetached(["bash", "-c", `${Config.options.apps.audioSettings || "pavucontrol"}`])
+                                                }
+                                            }
                                         }
                                         MaterialSymbol {
                                             text: Bluetooth.bluetoothConnected ? "bluetooth_connected" : Bluetooth.bluetoothEnabled ? "bluetooth" : "bluetooth_disabled"
                                             iconSize: Appearance.font.pixelSize.larger
                                             color: rightSidebarButton.colText
+                                            
+                                            MouseArea {
+                                                anchors.fill: parent
+                                                onClicked: {
+                                                    Quickshell.execDetached(["bash", "-c", `${Config.options.apps.bluetooth}`])
+                                                }
+                                            }
                                         }
                                     }
                                 }

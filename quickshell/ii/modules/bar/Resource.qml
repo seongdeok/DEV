@@ -9,6 +9,7 @@ Item {
     required property string iconName
     required property double percentage
     property bool shown: true
+    property string displayText: ""  // New property for text display
     clip: true
     visible: width > 0 && height > 0
     implicitWidth: resourceRowLayout.x < 0 ? 0 : childrenRect.width
@@ -27,7 +28,18 @@ Item {
             secondaryColor: Appearance.colors.colSecondaryContainer
             primaryColor: Appearance.m3colors.m3onSecondaryContainer
 
+            // Show either text or icon based on displayText property
+            StyledText {
+                visible: displayText.length > 0
+                anchors.centerIn: parent
+                text: displayText
+                font.pixelSize: 8
+                color: Appearance.m3colors.m3onSecondaryContainer
+                font.bold: true
+            }
+
             MaterialSymbol {
+                visible: displayText.length === 0
                 anchors.centerIn: parent
                 fill: 1
                 text: iconName
@@ -40,7 +52,7 @@ Item {
         StyledText {
             Layout.alignment: Qt.AlignVCenter
             color: Appearance.colors.colOnLayer1
-            text: `${Math.round(percentage * 100)}`
+            text: `${Math.round(percentage * 100)}%`
         }
 
         Behavior on x {
