@@ -1,0 +1,141 @@
+diff --git a/ii/modules/bar/Resource.qml b/ii/modules/bar/Resource.qml
+index 1234567..8901234 100644
+--- a/ii/modules/bar/Resource.qml
++++ b/ii/modules/bar/Resource.qml
+@@ -8,6 +8,7 @@ import Quickshell.Io
+ Item {
+     required property string iconName
+     required property double percentage
++    property string displayText: ""  // New property for text display
+     property bool shown: true
+     clip: true
+     visible: width > 0 && height > 0
+@@ -26,12 +27,23 @@ Item {
+             secondaryColor: Appearance.colors.colSecondaryContainer
+             primaryColor: Appearance.m3colors.m3onSecondaryContainer
+ 
++            // Show either text or icon based on displayText property
++            StyledText {
++                visible: displayText.length > 0
++                anchors.centerIn: parent
++                text: displayText
++                font.pixelSize: 8
++                color: Appearance.m3colors.m3onSecondaryContainer
++                font.bold: true
++            }
++
+             MaterialSymbol {
++                visible: displayText.length === 0
+                 anchors.centerIn: parent
+                 fill: 1
+                 text: iconName
+                 iconSize: Appearance.font.pixelSize.normal
+                 color: Appearance.m3colors.m3onSecondaryContainer
+             }
+ 
+         }
+@@ -39,7 +51,7 @@ Item {
+         StyledText {
+             Layout.alignment: Qt.AlignVCenter
+             color: Appearance.colors.colOnLayer1
+-            text: `${Math.round(percentage * 100)}`
++            text: `${Math.round(percentage * 100)}%`
+         }
+ 
+         Behavior on x {
+
+diff --git a/ii/modules/bar/Resources.qml b/ii/modules/bar/Resources.qml
+index 1234567..8901234 100644
+--- a/ii/modules/bar/Resources.qml
++++ b/ii/modules/bar/Resources.qml
+@@ -24,16 +24,18 @@ Item {
+         anchors.rightMargin: 4
+ 
+         Resource {
+-            iconName: "memory"
+-            percentage: ResourceUsage.memoryUsedPercentage
++            iconName: "settings_slow_motion"
++            percentage: ResourceUsage.cpuUsage
++            displayText: "CPU"  // Display "CPU" text instead of icon
++            shown: Config.options.bar.resources.alwaysShowCpu || 
++                !(MprisController.activePlayer?.trackTitle?.length > 0) ||
++                root.alwaysShowAllResources
+         }
+ 
+         Resource {
+-            iconName: "swap_horiz"
+-            percentage: ResourceUsage.swapUsedPercentage
+-            shown: (Config.options.bar.resources.alwaysShowSwap && percentage > 0) || 
+-                (MprisController.activePlayer?.trackTitle == null) ||
+-                root.alwaysShowAllResources
++            iconName: "memory"
++            percentage: ResourceUsage.memoryUsedPercentage
++            displayText: "Mem"  // Display "Mem" text instead of icon
+             Layout.leftMargin: 4
+         }
+ 
+         Resource {
+-            iconName: "settings_slow_motion"
+-            percentage: ResourceUsage.cpuUsage
+-            shown: Config.options.bar.resources.alwaysShowCpu || 
+-                !(MprisController.activePlayer?.trackTitle?.length > 0) ||
+-                root.alwaysShowAllResources
++            iconName: "swap_horiz"
++            percentage: ResourceUsage.swapUsedPercentage
++            shown: (Config.options.bar.resources.alwaysShowSwap && percentage > 0) || 
++                (MprisController.activePlayer?.trackTitle == null) ||
++                root.alwaysShowAllResources
+             Layout.leftMargin: shown ? 4 : 0
+         }
+
+diff --git a/ii/modules/bar/Bar.qml b/ii/modules/bar/Bar.qml
+index 1234567..8901234 100644
+--- a/ii/modules/bar/Bar.qml
++++ b/ii/modules/bar/Bar.qml
+@@ -475,28 +475,35 @@
+                                            }
+                                        }
+-                                       Item {
++                                       Item {
+                                            Layout.rightMargin: indicatorsRowLayout.realSpacing
+                                            Layout.fillHeight: true
+-                                           implicitWidth: cpuIcon.width + cpuText.width + 5
++                                           implicitWidth: volumeIcon.width + volumeText.width + 5
+                                            
+                                            Row {
+                                                anchors.centerIn: parent
+                                                spacing: 5
+                                                
+                                                MaterialSymbol {
+-                                                   id: cpuIcon
+-                                                   text: "memory"
++                                                   id: volumeIcon
++                                                   text: Audio.sink?.audio?.muted ? "volume_off" : 
++                                                         Audio.value < 0.33 ? "volume_down" : 
++                                                         Audio.value < 0.66 ? "volume_up" : "volume_up"
+                                                    iconSize: Appearance.font.pixelSize.larger
+                                                    color: rightSidebarButton.colText
+-                                                   opacity: cpuMouseArea.containsMouse ? 1.0 : (0.7 + (ResourceUsage.cpuUsage * 0.3))
+                                                }
+                                                
+                                                Text {
+-                                                   id: cpuText
+-                                                   text: `${Math.round(ResourceUsage.cpuUsage * 100)}%`
++                                                   id: volumeText
++                                                   text: `${Math.round((Audio.sink?.audio?.volume || 0) * 100)}%`
+                                                    font.pixelSize: Appearance.font.pixelSize.smaller
+                                                    color: rightSidebarButton.colText
+                                                    anchors.verticalCenter: parent.verticalCenter
+                                                }
+                                            }
+                                            
+                                            MouseArea {
+-                                               id: cpuMouseArea
+                                                anchors.fill: parent
+                                                hoverEnabled: true
+                                                onClicked: {
+-                                                   Quickshell.execDetached(["bash", "-c", `${Config.options.apps.taskManager}`])
++                                                   Quickshell.execDetached(["bash", "-c", `${Config.options.apps.audioSettings || "pavucontrol"}`])
+                                                }
+                                            }
+                                        }

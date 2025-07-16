@@ -1,7 +1,6 @@
 sudo pacman -S adobe-source-han-sans-kr-fonts adobe-source-han-serif-kr-fonts
 sudo pacman -S cscope universal-ctags curl ttf-font-awesome ghostty bluez bluez-utils network-manager-applet
-yay -S kime-bin ttf-nerd-fonts-symbols-mono tmux neovim ripgrep waynergy google-chrome ttf-nanum icaclient ripgrep teams-for-linux-bin ghostty visual-studio-code-bin
-
+yay -S ttf-hack-nerd kime-bin ttf-nerd-fonts-symbols-mono tmux neovim ripgrep waynergy google-chrome ttf-nanum icaclient ripgrep teams-for-linux-bin ghostty visual-studio-code-bin
 yay -S zoxide yazi fd bat eza ripgrep ueberzugpp btop duf dust procs tldr nodejs npm zip unzip
 yay -S wezterm-git
 #yay -S sddm blueman network-manager-applet
@@ -23,9 +22,14 @@ ln -s $PWD/kime ~/.config/kime
 #wayne3rgy
 ln -s $PWD/waynergy ~/.config/waynergy
 #hyprland settings
-ln -s $PWD/hypr_user_config ~/.config/hypr/UserConfigs
+#ln -s $PWD/hypr_user_config ~/.config/hypr/UserConfigs
 
 #ghostty
 ln -s $PWD/ghostty ~/.config/ghostty
 
 ln -s $PWD/.wezterm.lua ~/.wezterm.lua
+
+mkdir -p ~/.config/systemd/user
+cp $PWD/waynergy.service ~/.config/systemd/user/
+systemctl --user enable waykime.service
+cp $PWD/code-flags.conf ~/.config/

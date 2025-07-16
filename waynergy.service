@@ -1,0 +1,11 @@
+[Unit]
+Description=Waynergy keyboard mouse share
+After=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/waynergy
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=default.target
