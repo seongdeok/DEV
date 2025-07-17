@@ -31,5 +31,5 @@ ln -s $PWD/.wezterm.lua ~/.wezterm.lua
 
 mkdir -p ~/.config/systemd/user
 cp $PWD/waynergy.service ~/.config/systemd/user/
-systemctl --user enable waykime.service
+systemctl --user enable waynergy.service
 cp $PWD/code-flags.conf ~/.config/
