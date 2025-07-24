@@ -2,6 +2,8 @@ import "root:/modules/common"
 import "root:/modules/common/widgets"
 import QtQuick
 import QtQuick.Layouts
+import QtQuick.Controls
+import Qt.labs.platform
 import Quickshell
 import Quickshell.Io
 
@@ -47,6 +49,10 @@ Item {
                 color: Appearance.m3colors.m3onSecondaryContainer
             }
 
+            MouseArea {
+                anchors.fill: parent
+                onClicked: Process.startDetached("pavucontrol-qt")
+            }
         }
 
         StyledText {
@@ -54,11 +60,9 @@ Item {
             color: Appearance.colors.colOnLayer1
             text: `${Math.round(percentage * 100)}%`
         }
-
         Behavior on x {
             animation: Appearance.animation.elementMove.numberAnimation.createObject(this)
         }
-
     }
 
     Behavior on implicitWidth {
