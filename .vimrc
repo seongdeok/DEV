@@ -42,7 +42,7 @@ noremap <TAB> <C-W>w
 
 autocmd BufWritePre * %s/\s\+$//e
 
-set csprg=/usr/bin/cscope
+set csprg=cscope
 set csto=0
 set cst
 set nocsverb

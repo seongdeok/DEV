@@ -33,7 +33,9 @@ for m in $(aerospace list-monitors --format %{monitor-id} ); do
             click_script="aerospace workspace $sid" \
             script="$PLUGIN_DIR/aerospace.sh $sid" \
           --subscribe workspace.$sid aerospace_workspace_change \
-          --subscribe workspace.$sid space_windows_change
+          --subscribe workspace.$sid space_windows_change \
+          --subscribe workspace.$sid display_change \
+
    
   done
 done
