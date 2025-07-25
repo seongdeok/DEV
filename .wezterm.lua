@@ -1,4 +1,27 @@
 local wezterm = require("wezterm")
+
+if wezterm.target_triple:find("darwin") then
+	print("Mac")
+elseif wezterm.target_triple:find("linux") then
+	print("Linux")
+elseif wezterm.target_triple:find("windows") then
+	print("Windows")
+end
+
+wezterm.on("gui-startup", function(cmd)
+	local _, _, window = wezterm.mux.spawn_window(cmd or {})
+	local width = window:get_dimensions().pixel_width
+
+	local overrides = {}
+	local screen = window:get_dimensions().pixel_width
+	if screen > 3000 then
+		overrides.font_size = 16.0
+	else
+		overrides.font_size = 12.0
+	end
+	window:set_config_overrides(overrides)
+end)
+
 return {
 	enable_wayland = false,
 	front_end = "OpenGL",
@@ -7,7 +30,7 @@ return {
 	-- color_scheme = 'termnial.sexy',
 	color_scheme = "Catppuccin Mocha",
 	enable_tab_bar = false,
-	font_size = 16.0,
+	font_size = 14.0,
 	font = wezterm.font("Hack Nerd Font"),
 	-- macos_window_background_blur = 40,
 	--macos_window_background_blur = 30,
