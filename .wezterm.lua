@@ -24,14 +24,18 @@ end)
 
 return {
 	enable_wayland = false,
-	front_end = "OpenGL",
-	--front_end = "WebGpu",
+	--front_end = "OpenGL",
+	front_end = "WebGpu",
 	adjust_window_size_when_changing_font_size = false,
 	-- color_scheme = 'termnial.sexy',
 	color_scheme = "Catppuccin Mocha",
 	enable_tab_bar = false,
 	font_size = 14.0,
-	font = wezterm.font("Hack Nerd Font"),
+	font = wezterm.font_with_fallback({
+		"JetBrains Mono Nerd Font",
+		"Hack Nerd Font",
+		"Nerd Font",
+	}),
 	-- macos_window_background_blur = 40,
 	--macos_window_background_blur = 30,
 	native_macos_fullscreen_mode = false,
