@@ -15,7 +15,9 @@ brew install --cask visual-studio-code
 brew install --cask font-meslo-for-powerlevel10k
 brew install ripgrep
 brew install bash
-
+brew install --cask font-jetbrains-mono-nerd-font
+brew install --cask nikitabobko/tap/aerospace
+brew install wezterm
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
 echo "source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ~/.zshrc
