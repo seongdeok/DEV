@@ -1,7 +1,6 @@
 daemon:
   modules:
     - Xim
-    - Wayland
     - Indicator
 indicator:
   icon_color: Black
