@@ -110,7 +110,7 @@ fi
 info "Checking ghostty symlink..."
 if [ ! -L "$HOME/.config/ghostty" ]; then
   info "Creating ghostty symlink..."
-  ln -s ghostty ~/.config/ghostty
+  ln -s $PWD/ghostty ~/.config/ghostty
 else
   info "ghostty symlink already exists. Skipping."
 fi
@@ -124,7 +124,7 @@ defaults write -g ApplePressAndHoldEnabled -bool false
 info "Checking borders symlink..."
 if [ ! -L "$HOME/.config/borders" ]; then
   info "Creating borders symlink..."
-  ln -s ./borders ~/.config/borders
+  ln -s $PWD/borders ~/.config/borders
 else
   info "borders symlink already exists. Skipping."
 fi
@@ -134,7 +134,7 @@ brew services start borders
 info "Checking wezterm symlink..."
 if [ ! -L "$HOME/.wezterm.lua" ]; then
   info "Creating borders symlink..."
-  ln -s ./.wezterm.lua ~/.wezterm.lua
+  ln -s $PWD/.wezterm.lua ~/.wezterm.lua
 else
   info "wezterm symlink already exists. Skipping."
 fi
@@ -142,7 +142,7 @@ fi
 info "Checking sketchybar symlink..."
 if [ ! -L "$HOME/.config/sketchybar" ]; then
   info "Creating sketchybar symlink..."
-  ln -s ./sketchybar ~/.config/sketchybar
+  ln -s $PWD/sketchybar ~/.config/sketchybar
 else
   info "sketchybar symlink already exists. Skipping."
 fi
@@ -150,7 +150,7 @@ fi
 info "Checking nvim symlink..."
 if [ ! -L "$HOME/.config/nvim" ]; then
   info "Creating nvim symlink..."
-  ln -s ./nvim ~/.config/nvim
+  ln -s $PWD/nvim ~/.config/nvim
 else
   info "nvim symlink already exists. Skipping."
 fi
