@@ -131,3 +131,26 @@ fi
 info "Starting borders service..."
 brew services start borders
 
+info "Checking wezterm symlink..."
+if [ ! -L "$HOME/.wezterm.lua" ]; then
+  info "Creating borders symlink..."
+  ln -s ./.wezterm.lua ~/.wezterm.lua
+else
+  info "wezterm symlink already exists. Skipping."
+fi
+
+info "Checking sketchybar symlink..."
+if [ ! -L "$HOME/.config/sketchybar" ]; then
+  info "Creating sketchybar symlink..."
+  ln -s ./sketchybar ~/.config/sketchybar
+else
+  info "sketchybar symlink already exists. Skipping."
+fi
+
+info "Checking nvim symlink..."
+if [ ! -L "$HOME/.config/nvim" ]; then
+  info "Creating nvim symlink..."
+  ln -s ./nvim ~/.config/nvim
+else
+  info "nvim symlink already exists. Skipping."
+fi
