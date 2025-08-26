@@ -4,17 +4,10 @@ brew install git cscope universal-ctags vim curl zsh neovim
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 ln -s .vimrc ~/.vimrc
 vim +PluginInstall +qall
-brew install --cask ghostty
-brew install —-cask craft rectangle raycast appcleaner
-brew install --cask keka
-brew install --cask karabiner-elements
-brew install --cask maccy
-brew install --cask alt-tab
-brew install --cask macs-fan-control
+brew install --cask ghostty craft rectangle raycast appcleaner keka karabiner-elements maccy alt-tab macs-fan-control
 brew install --cask visual-studio-code
 brew install --cask font-meslo-for-powerlevel10k
-brew install ripgrep
-brew install bash
+brew install ripgrep bash
 brew install --cask font-jetbrains-mono-nerd-font
 brew install --cask nikitabobko/tap/aerospace
 brew install wezterm
