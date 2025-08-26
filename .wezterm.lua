@@ -104,6 +104,7 @@ wezterm.on("window-config-reloaded", function(window, pane)
 	end
 	debug_log("Using DPI for font sizing: " .. tostring(dpi))
 	local size = get_font_size_dpi(dpi)
+	size = 15
 	overrides.font_size = size
 	window:set_config_overrides(overrides)
 end)
