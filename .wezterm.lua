@@ -118,7 +118,7 @@ return {
 	enable_tab_bar = false,
 	font_size = 14.0,
 	font = wezterm.font_with_fallback({
-		"JetBrains Mono Nerd Font",
+		"JetBrainsMono Nerd Font",
 		"Hack Nerd Font",
 		"Nerd Font",
 	}),
