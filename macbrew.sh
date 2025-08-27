@@ -12,7 +12,7 @@ info "Updating Homebrew..."
 brew update
 
 info "Installing Homebrew formulae..."
-for pkg in git cscope universal-ctags vim curl zsh neovim ripgrep bash wezterm neofetch borders sketchybar font-hack-nerd-font jq font-sf-pro tmux; do
+for pkg in git cscope universal-ctags vim curl zsh neovim ripgrep bash wezterm neofetch borders sketchybar font-hack-nerd-font jq font-sf-pro tmux lua-language-server; do
   if ! brew list --formula | grep -q "^$pkg$"; then
     info "Installing $pkg..."
     brew install "$pkg"
@@ -161,6 +161,7 @@ if [ ! -L "$HOME/.config/tmux" ]; then
   mkdir -p ~/.config/tmux
   mkdir -p ~/.config/.tmux
   ln -s $PWD/.tmux.conf ~/.config/tmux/tmux.conf
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 else
   info "tmux symlink already exists. Skipping."
 fi

@@ -1,4 +1,7 @@
-after-startup-command = ['exec-and-forget sketchybar --reload']
+#after-startup-command = ['exec-and-forget sketchybar --reload']
+after-startup-command = [
+  "exec-and-forget if brew services list | grep -q sketchybar; then sketchybar --reload; elif ! pgrep sketchybar > /dev/null; then sketchybar; fi"
+]
 
 # Notify Sketchybar about workspace change
 exec-on-workspace-change = ['/bin/bash', '-c',
@@ -197,8 +200,8 @@ alt-6 = 'workspace 6'
 alt-7 = 'workspace 7'
 alt-8 = 'workspace 8'
 
-alt-leftSquareBracket = 'workspace prev'
-alt-rightSquareBracket = 'workspace next'
+alt-leftSquareBracket = 'exec-and-forget aerospace workspace prev || { current=$(aerospace list-monitors --focused | awk -F"|" "{print \$1}" | xargs); total=$(aerospace list-monitors --count); prev_mon=$((current - 1)); if [ $prev_mon -lt 1 ]; then prev_mon=$total; fi; last_ws=$(aerospace list-workspaces --monitor $prev_mon | tail -n1); aerospace workspace "$last_ws"; }'
+alt-rightSquareBracket = 'exec-and-forget aerospace workspace next || { current=$(aerospace list-monitors --focused | awk -F"|" "{print \$1}" | xargs); total=$(aerospace list-monitors --count); next_mon=$((current + 1)); if [ $next_mon -gt $total ]; then next_mon=1; fi; first_ws=$(aerospace list-workspaces --monitor $next_mon | head -n1); aerospace workspace "$first_ws"; }'
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-shift-1 = 'move-node-to-workspace 1 --focus-follows-window'
 alt-shift-2 = 'move-node-to-workspace 2 --focus-follows-window'
