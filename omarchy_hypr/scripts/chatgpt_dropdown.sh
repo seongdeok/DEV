@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CLASS="chrome-app.eaip.lge.com__lgenie_public-Default"
+CLASS="chrome-app.eaip.lge.com__lgenie_-Default"
 TITLE="LGenie.AI"
 #현재 활성 창이 dropterm인지 확인
 ACTIVE_DROPTERM=$(hyprctl activewindow -j | jq -r --arg TITLE "$TITLE" 'select(.title == $TITLE) | .address')
@@ -25,5 +25,5 @@ elif [[ -n "$WINDOW_ID" ]]; then
 else
 #창이 없으면 새로 실행하고 focus
   #google-chrome-stable "https://app.eaip.lge.com/lgenie/public" --class $CLASS 
-  omarchy-launch-webapp "https://app.eaip.lge.com/lgenie/public" 
+  omarchy-launch-webapp "https://app.eaip.lge.com/lgenie/" 
 fi
