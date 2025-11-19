@@ -16,6 +16,9 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- Disable LazyVim order check
+vim.g.lazyvim_check_order = false
+
 -- Setup lazy.nvim
 require("vim-options")
 require("vim-keymap")
