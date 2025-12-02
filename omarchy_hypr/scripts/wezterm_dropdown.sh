@@ -73,7 +73,6 @@ move_to_workspace() {
 if [[ -n "$ACTIVE_DROPTERM" ]]; then
 #현재 포커스가 dropterm이면 숨김
   hyprctl dispatch togglespecialworkspace dropterm
-  #hyprctl dispatch movetoworkspace DROPDROP
   sleep 0.2
   WIN_ID=$(hyprctl clients -j | jq -r ".[] | select(.tags[]? == \"$TAG\") | .address" | head -n 1)
   if [ -n "$WIN_ID" ]; then
@@ -83,7 +82,6 @@ if [[ -n "$ACTIVE_DROPTERM" ]]; then
     echo "태그 '$TAG'를 가진 창이 없습니다."
     hyprctl dispatch cyclenext visible hist 
   fi
-  #hyprctl dispatch cyclenext visible hist 
 elif [[ -n "$WINDOW_ID" ]]; then
 #창은 있는데 포커스가 아니면 가져오기
   hyprctl dispatch tagwindow $TAG
