@@ -8,6 +8,7 @@ add_text_if_none() {
   fi
   if ! grep -Fxq "$text" "$file"; then
     echo "$text" >> "$file"
+  fi
 }
 
 
@@ -31,6 +32,7 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 #ln -s $PWD/kime ~/.config/kime
 
 #wayne3rgy
+rm ~/.config/waynergy
 ln -s $PWD/waynergy ~/.config/waynergy
 #hyprland settings
 #ln -s $PWD/hypr_user_config ~/.config/hypr/UserConfigs
@@ -63,4 +65,7 @@ add_text_if_none "~/.config/hypr/hyprland.conf" "source = ~/.config/hypr/omarchy
 add_text_if_none "~/.config/hypr/hyprland.conf" "source = ~/.config/hypr/omarchy_hypr/keybinds.conf"
 add_text_if_none "~/.config/hypr/hyprland.conf" "source = ~/.config/hypr/omarchy_hypr/general.conf"
 add_text_if_none "~/.config/hypr/hyprland.conf" "source = ~/.config/hypr/omarchy_hypr/rules.conf"
+
+rm -rf ~/.config/waybar
+ln -s $PWD/waybar ~/.config/waybar
 
