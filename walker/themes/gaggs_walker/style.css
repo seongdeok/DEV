@@ -1,0 +1,142 @@
+@import "../../../../.config/omarchy/current/theme/walker.css";
+
+* {
+  all: unset;
+}
+
+* {
+  font-family: monospace;
+  font-size: 16px;
+  color: @text;
+}
+
+scrollbar {
+  opacity: 0;
+}
+
+.normal-icons {
+  -gtk-icon-size: 18px;
+}
+
+.large-icons {
+  -gtk-icon-size: 36px;
+}
+
+.box-wrapper {
+  background: rgba(24, 24, 37, 0.95); /* Catppuccin Mocha Base */
+  padding: 16px;
+  border: 2px solid rgba(116, 199, 236, 0.6); /* Catppuccin Sapphire - 사파이어 */
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+.preview-box {
+}
+
+.box {
+}
+
+.search-container {
+  background: rgba(30, 30, 46, 0.8); /* Catppuccin Mocha Surface0 */
+  padding: 12px 16px;
+  border-radius: 12px;
+  margin-bottom: 8px;
+  border: 2px solid rgba(148, 226, 213, 0.7); /* Catppuccin Teal - 청록색, Peach와 보색 조화 */
+}
+
+.input placeholder {
+  opacity: 0.4;
+}
+
+.input {
+  padding: 4px 8px;
+  font-size: 16px;
+}
+
+.input:focus,
+.input:active {
+  box-shadow: none;
+  outline: none;
+}
+
+.content-container {
+}
+
+.placeholder {
+}
+
+.scroll {
+}
+
+.list {
+}
+
+child,
+child > * {
+  transition: all 0.2s ease;
+}
+
+child:hover .item-box {
+  background: rgba(49, 50, 68, 0.6); /* Catppuccin Mocha Surface1 */
+  border-radius: 10px;
+}
+
+child:selected .item-box {
+  background: rgba(137, 180, 250, 0.2); /* Catppuccin Mocha Blue */
+  border-radius: 10px;
+  border-left: 3px solid rgba(137, 180, 250, 1); /* Catppuccin Blue accent */
+}
+
+child:selected .item-box * {
+  color: @selected-text;
+}
+
+.item-box {
+  padding: 10px 14px;
+  margin: 2px 0;
+  transition: all 0.2s ease;
+}
+
+.item-text-box {
+  all: unset;
+  padding: 4px 0;
+}
+
+.item-text {
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.item-subtext {
+  font-size: 0px;
+  min-height: 0px;
+  margin: 0px;
+  padding: 0px;
+}
+
+.item-image {
+  margin-right: 16px;
+  -gtk-icon-transform: scale(1.0);
+  opacity: 0.95;
+}
+
+.current {
+  font-style: italic;
+  color: rgba(180, 190, 254, 0.9); /* Catppuccin Lavender */
+}
+
+.keybind-hints {
+  background: rgba(30, 30, 46, 0.8); /* Catppuccin Mocha Surface0 */
+  padding: 10px 14px;
+  margin-top: 8px;
+  border-radius: 10px;
+  border: 2px solid rgba(180, 190, 254, 0.35); /* Catppuccin Lavender - 밝게 */
+  font-size: 13px;
+}
+
+.preview {
+  background: rgba(30, 30, 46, 0.8); /* Catppuccin Mocha Surface0 */
+  border-radius: 10px;
+  padding: 12px;
+  border: 2px solid rgba(180, 190, 254, 0.35); /* Catppuccin Lavender - 밝게 */
+}

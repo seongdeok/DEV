@@ -105,6 +105,7 @@ source $ZSH/oh-my-zsh.sh
 
 alias ls='eza -lh --group-directories-first --icons=auto'
 alias lsa='ls -a'
+alias l='eza -lh --group-directories-first --icons=auto -al'
 alias lt='eza --tree --level=2 --long --icons --git'
 alias lta='lt -a'
 alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
@@ -127,6 +128,7 @@ alias ....='cd ../../..'
 alias d='docker'
 alias r='rails'
 n() { if [ "$#" -eq 0 ]; then nvim .; else nvim "$@"; fi; }
+v() { if [ "$#" -eq 0 ]; then nvim .; else nvim "$@"; fi; }
 
 # Git
 alias g='git'

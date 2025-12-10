@@ -34,6 +34,7 @@ window#waybar {
 
 /* 개별 모듈 스타일: 각각 배경과 둥근 모서리 적용 */
 #custom-omarchy,
+#custom-notification,
 #clock,
 #custom-update,
 #tray,
