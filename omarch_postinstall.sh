@@ -32,7 +32,7 @@ git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
 #ln -s $PWD/kime $HOME/.config/kime
 
 #wayne3rgy
-rm $HOME/.config/waynergy
+rm -rf $HOME/.config/waynergy
 ln -s $PWD/waynergy $HOME/.config/waynergy
 #hyprland settings
 #ln -s $PWD/hypr_user_config $HOME/.config/hypr/UserConfigs
@@ -42,6 +42,7 @@ ln -s $PWD/waynergy $HOME/.config/waynergy
 rm -rf $HOME/.config/ghostty
 ln -s $PWD/ghostty $HOME/.config/ghostty
 
+rm $HOME/.wezterm.lua
 ln -s $PWD/.wezterm.lua $HOME/.wezterm.lua
 
 mkdir -p $HOME/.config/systemd/user
@@ -57,6 +58,9 @@ rm $HOME/.config/starship.toml
 ln -s $PWD/starship/starship.toml $HOME/.config/starship.toml
 #cp $PWD/code-flags.conf $HOME/.config/
 #sudo cp sddm.conf /etc/sddm.conf
+
+rm -rf $HOME/.config/walker
+ln -s $PWD/walker $HOME/.config/walker
 
 rm $HOME/.config/hypr/omarchy_hypr
 ln -s $PWD/omarchy_hypr $HOME/.config/hypr/omarchy_hypr
