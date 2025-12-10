@@ -18,54 +18,54 @@ sudo pacman -S --needed --noconfirm cscope universal-ctags curl ttf-font-awesome
 yay -S --needed --noconfirm ttf-hack-nerd kime-bin ttf-nerd-fonts-symbols-mono tmux neovim ripgrep waynergy google-chrome ttf-nanum ripgrep ghostty visual-studio-code-bin
 yay -S --needed --noconfirm zoxide yazi fd bat eza ripgrep ueberzugpp btop duf dust procs tldr nodejs npm zip unzip nwg-displays
 yay -S --needed --noconfirm wezterm-git lua-language-server 
-mkdir -p ~/.config/tmux
-mkdir -p ~/.config/.tmux
+mkdir -p $HOME/.config/tmux
+mkdir -p $HOME/.config/.tmux
 # nvim
-rm -rf ~/.config/nvim
-ln -s $PWD/nvim ~/.config/nvim
-echo 'alias vi=nvim' >>~/.zshrc
+rm -rf $HOME/.config/nvim
+ln -s $PWD/nvim $HOME/.config/nvim
+echo 'alias vi=nvim' >>$HOME/.zshrc
 # tmux
-ln -s $PWD/.tmux.conf ~/.config/tmux/tmux.conf
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+ln -s $PWD/.tmux.conf $HOME/.config/tmux/tmux.conf
+git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
 
 #kime
-#ln -s $PWD/kime ~/.config/kime
+#ln -s $PWD/kime $HOME/.config/kime
 
 #wayne3rgy
-rm ~/.config/waynergy
-ln -s $PWD/waynergy ~/.config/waynergy
+rm $HOME/.config/waynergy
+ln -s $PWD/waynergy $HOME/.config/waynergy
 #hyprland settings
-#ln -s $PWD/hypr_user_config ~/.config/hypr/UserConfigs
+#ln -s $PWD/hypr_user_config $HOME/.config/hypr/UserConfigs
 
 
 #ghostty
-rm -rf ~/.config/ghostty
-ln -s $PWD/ghostty ~/.config/ghostty
+rm -rf $HOME/.config/ghostty
+ln -s $PWD/ghostty $HOME/.config/ghostty
 
-ln -s $PWD/.wezterm.lua ~/.wezterm.lua
+ln -s $PWD/.wezterm.lua $HOME/.wezterm.lua
 
-mkdir -p ~/.config/systemd/user
-cp $PWD/waynergy.service ~/.config/systemd/user/
+mkdir -p $HOME/.config/systemd/user
+cp $PWD/waynergy.service $HOME/.config/systemd/user/
 systemctl --user enable waynergy.service
 
 $PWD/zsh_setup.sh
 
-rm ~/.zshrc
-ln -s $PWD/.zshrc ~/.zshrc
+rm $HOME/.zshrc
+ln -s $PWD/.zshrc $HOME/.zshrc
 
-rm ~/.config/starship.toml
-ln -s $PWD/starship/starship.toml ~/.config/starship.toml
-#cp $PWD/code-flags.conf ~/.config/
+rm $HOME/.config/starship.toml
+ln -s $PWD/starship/starship.toml $HOME/.config/starship.toml
+#cp $PWD/code-flags.conf $HOME/.config/
 #sudo cp sddm.conf /etc/sddm.conf
 
-rm ~/.config/hypr/omarchy_hypr
-ln -s $PWD/omarchy_hypr ~/.config/hypr/omarchy_hypr
-add_text_if_none "~/.config/hypr/hyprland.conf" "source = ~/.config/hypr/omarchy_hypr/env.conf"
-add_text_if_none "~/.config/hypr/hyprland.conf" "source = ~/.config/hypr/omarchy_hypr/execs.conf"
-add_text_if_none "~/.config/hypr/hyprland.conf" "source = ~/.config/hypr/omarchy_hypr/keybinds.conf"
-add_text_if_none "~/.config/hypr/hyprland.conf" "source = ~/.config/hypr/omarchy_hypr/general.conf"
-add_text_if_none "~/.config/hypr/hyprland.conf" "source = ~/.config/hypr/omarchy_hypr/rules.conf"
+rm $HOME/.config/hypr/omarchy_hypr
+ln -s $PWD/omarchy_hypr $HOME/.config/hypr/omarchy_hypr
+add_text_if_none "$HOME/.config/hypr/hyprland.conf" "source = $HOME/.config/hypr/omarchy_hypr/env.conf"
+add_text_if_none "$HOME/.config/hypr/hyprland.conf" "source = $HOME/.config/hypr/omarchy_hypr/execs.conf"
+add_text_if_none "$HOME/.config/hypr/hyprland.conf" "source = $HOME/.config/hypr/omarchy_hypr/keybinds.conf"
+add_text_if_none "$HOME/.config/hypr/hyprland.conf" "source = $HOME/.config/hypr/omarchy_hypr/general.conf"
+add_text_if_none "$HOME/.config/hypr/hyprland.conf" "source = $HOME/.config/hypr/omarchy_hypr/rules.conf"
 
-rm -rf ~/.config/waybar
-ln -s $PWD/waybar ~/.config/waybar
+rm -rf $HOME/.config/waybar
+ln -s $PWD/waybar $HOME/.config/waybar
 
