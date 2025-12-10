@@ -17,7 +17,7 @@ sudo pacman -S --needed --noconfirm adobe-source-han-sans-kr-fonts adobe-source-
 sudo pacman -S --needed --noconfirm cscope universal-ctags curl ttf-font-awesome ghostty bluez bluez-utils 
 yay -S --needed --noconfirm ttf-hack-nerd kime-bin ttf-nerd-fonts-symbols-mono tmux neovim ripgrep waynergy google-chrome ttf-nanum ripgrep ghostty visual-studio-code-bin
 yay -S --needed --noconfirm zoxide yazi fd bat eza ripgrep ueberzugpp btop duf dust procs tldr nodejs npm zip unzip nwg-displays
-yay -S --needed --noconfirm wezterm-git lua-language-server 
+yay -S --needed --noconfirm lua-language-server swaync
 mkdir -p $HOME/.config/tmux
 mkdir -p $HOME/.config/.tmux
 # nvim
