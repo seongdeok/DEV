@@ -116,12 +116,12 @@
               <object class="GtkBox" id="Keybinds">
                 <property name="hexpand">true</property>
                 <property name="margin-top">10</property>
+                <property name="halign">end</property>
                 <style>
                   <class name="keybinds"></class>
                 </style>
                 <child>
                   <object class="GtkBox" id="GlobalKeybinds">
-                    <property name="hexpand">true</property>
                     <property name="spacing">10</property>
                     <style>
                       <class name="global-keybinds"></class>
@@ -130,7 +130,6 @@
                 </child>
                 <child>
                   <object class="GtkBox" id="ItemKeybinds">
-                    <property name="hexpand">true</property>
                     <property name="halign">end</property>
                     <property name="spacing">10</property>
                     <style>
@@ -138,17 +137,6 @@
                     </style>
                   </object>
                 </child>
-              </object>
-            </child>
-            <child>
-              <object class="GtkLabel" id="PrefixHints">
-                <style>
-                  <class name="prefix-hints"></class>
-                </style>
-                <property name="xalign">0</property>
-                <property name="margin-top">8</property>
-                <property name="use-markup">true</property>
-                <property name="label">&lt;span background='#74c7ec' foreground='#1e1e2e' weight='bold' size='small'&gt;  /  &lt;/span&gt; provider    &lt;span background='#94e2d5' foreground='#1e1e2e' weight='bold' size='small'&gt;  .  &lt;/span&gt; files    &lt;span background='#f5c2e7' foreground='#1e1e2e' weight='bold' size='small'&gt;  :  &lt;/span&gt; symbols    &lt;span background='#fab387' foreground='#1e1e2e' weight='bold' size='small'&gt;  =  &lt;/span&gt; calc    &lt;span background='#f38ba8' foreground='#1e1e2e' weight='bold' size='small'&gt;  @  &lt;/span&gt; web    &lt;span background='#b4befe' foreground='#1e1e2e' weight='bold' size='small'&gt;  $  &lt;/span&gt; clipboard</property>
               </object>
             </child>
             <child>

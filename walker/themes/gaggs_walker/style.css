@@ -45,9 +45,9 @@ scrollbar {
 }
 
 .input placeholder {
-  opacity: 0.6;
-  color: rgba(148, 226, 213, 0.8); /* Catppuccin Teal - prefix 색상과 매칭 */
-  font-size: 15px;
+  opacity: 0.5;
+  color: rgba(148, 226, 213, 0.7); /* Catppuccin Teal */
+  font-size: 14px;
 }
 
 .input {
@@ -161,10 +161,21 @@ child:selected .item-box * {
 
 .item-keybinds {
   padding-left: 10px;
+  justify-content: flex-end;
 }
 
 .keybind {
   margin-right: 12px;
+  padding: 5px 10px;
+  border-radius: 6px;
+  background: rgba(49, 50, 68, 0.4);
+  border: 1px solid rgba(137, 180, 250, 0.25);
+  transition: all 0.2s;
+}
+
+.keybind:hover {
+  background: rgba(49, 50, 68, 0.6);
+  border-color: rgba(137, 180, 250, 0.4);
 }
 
 .keybind-button {
@@ -178,21 +189,21 @@ child:selected .item-box * {
 }
 
 .keybind-bind {
-  padding: 4px 8px;
-  border-radius: 5px;
-  background: rgba(137, 180, 250, 0.2);
-  border: 1px solid rgba(137, 180, 250, 0.4);
+  padding: 3px 7px;
+  border-radius: 4px;
+  background: rgba(137, 180, 250, 0.25);
+  border: 1px solid rgba(137, 180, 250, 0.5);
   font-family: monospace;
   font-size: 11px;
   font-weight: bold;
-  margin-right: 6px;
+  margin-right: 8px;
   text-transform: uppercase;
 }
 
 .keybind-label {
-  opacity: 0.7;
+  opacity: 0.9;
   font-size: 12px;
-  margin-right: 4px;
+  margin-right: 0px;
 }
 
 .preview {

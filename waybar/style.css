@@ -164,3 +164,9 @@ tooltip {
 #custom-screenrecording-indicator.active {
   color: #a55555;
 }
+#custom-notification {
+  color: @lavender;
+  border: 1px solid @lavender;
+  font-size: 14px;
+  font-family: "Material Icons";
+}
