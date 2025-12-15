@@ -15,18 +15,21 @@ add_text_if_none() {
 
 sudo pacman -S --needed --noconfirm adobe-source-han-sans-kr-fonts adobe-source-han-serif-kr-fonts
 sudo pacman -S --needed --noconfirm cscope universal-ctags curl ttf-font-awesome ghostty bluez bluez-utils 
-yay -S --needed --noconfirm ttf-hack-nerd kime-bin ttf-nerd-fonts-symbols-mono tmux neovim ripgrep waynergy google-chrome ttf-nanum ripgrep ghostty visual-studio-code-bin
-yay -S --needed --noconfirm zoxide yazi fd bat eza ripgrep ueberzugpp btop duf dust procs tldr nodejs npm zip unzip nwg-displays
-yay -S --needed --noconfirm lua-language-server swaync
+yay -S --needed --noconfirm ttf-hack-nerd ttf-nerd-fonts-symbols-mono tmux neovim ripgrep waynergy google-chrome ttf-nanum ripgrep ghostty visual-studio-code-bin
+yay -S --needed --noconfirm zoxide yazi fd bat eza ripgrep btop duf dust procs tldr nodejs npm zip unzip nwg-displays
+yay -S --needed --noconfirm wezterm-git lua-language-server 
 mkdir -p $HOME/.config/tmux
 mkdir -p $HOME/.config/.tmux
 # nvim
 rm -rf $HOME/.config/nvim
 ln -s $PWD/nvim $HOME/.config/nvim
-echo 'alias vi=nvim' >>$HOME/.zshrc
+nvim --headless "+Lazy! sync" +qa
+
+
 # tmux
 ln -s $PWD/.tmux.conf $HOME/.config/tmux/tmux.conf
 git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
+$HOME/.tmux/plugins/tpm/bin/install_plugins
 
 #kime
 #ln -s $PWD/kime $HOME/.config/kime

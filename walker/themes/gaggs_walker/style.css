@@ -45,7 +45,9 @@ scrollbar {
 }
 
 .input placeholder {
-  opacity: 0.4;
+  opacity: 0.6;
+  color: rgba(148, 226, 213, 0.8); /* Catppuccin Teal - prefix 색상과 매칭 */
+  font-size: 15px;
 }
 
 .input {
@@ -125,6 +127,17 @@ child:selected .item-box * {
   color: rgba(180, 190, 254, 0.9); /* Catppuccin Lavender */
 }
 
+.prefix-hints {
+  background: rgba(30, 30, 46, 0.9); /* Catppuccin Mocha Surface0 */
+  padding: 12px 16px;
+  margin-top: 8px;
+  border-radius: 10px;
+  border: 2px solid rgba(148, 226, 213, 0.4); /* Catppuccin Teal */
+  font-size: 14px;
+  color: rgba(205, 214, 244, 0.95); /* Catppuccin Text */
+  letter-spacing: 0.5px;
+}
+
 .keybind-hints {
   background: rgba(30, 30, 46, 0.8); /* Catppuccin Mocha Surface0 */
   padding: 10px 14px;
@@ -132,6 +145,54 @@ child:selected .item-box * {
   border-radius: 10px;
   border: 2px solid rgba(180, 190, 254, 0.35); /* Catppuccin Lavender - 밝게 */
   font-size: 13px;
+}
+
+.keybinds {
+  padding-top: 10px;
+  padding-bottom: 6px;
+  border-top: 1px solid rgba(49, 50, 68, 0.6);
+  font-size: 13px;
+  color: rgba(205, 214, 244, 0.9);
+}
+
+.global-keybinds {
+  padding-right: 10px;
+}
+
+.item-keybinds {
+  padding-left: 10px;
+}
+
+.keybind {
+  margin-right: 12px;
+}
+
+.keybind-button {
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.keybind-button:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.keybind-bind {
+  padding: 4px 8px;
+  border-radius: 5px;
+  background: rgba(137, 180, 250, 0.2);
+  border: 1px solid rgba(137, 180, 250, 0.4);
+  font-family: monospace;
+  font-size: 11px;
+  font-weight: bold;
+  margin-right: 6px;
+  text-transform: uppercase;
+}
+
+.keybind-label {
+  opacity: 0.7;
+  font-size: 12px;
+  margin-right: 4px;
 }
 
 .preview {
