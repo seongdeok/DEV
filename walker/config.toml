@@ -18,7 +18,7 @@ anchor_left = true
 anchor_right = true
 
 [placeholders]
-"default" = { input = " Search...  ( / provider  . files  : symbols  = calc  @ web  $ clipboard )", list = "No Results" } # placeholders for input and empty list
+"default" = { input = " Search...  (/provider .files :symbols =calc @web $clipboard)", list = "No Results" } # placeholders for input and empty list
 
 [keybinds]
 close = ["Escape"]

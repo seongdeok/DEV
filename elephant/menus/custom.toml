@@ -1,0 +1,43 @@
+name = "custom"
+name_pretty = "Custom Menu"
+icon = "applications-system"
+
+[[entries]]
+text = "System Monitor"
+icon = "utilities-system-monitor"
+actions = { "open" = "gnome-system-monitor" }
+
+[[entries]]
+text = "Terminal"
+icon = "utilities-terminal"
+actions = { "open" = "alacritty" }
+
+[[entries]]
+text = "File Manager"
+icon = "system-file-manager"
+actions = { "open" = "nautilus" }
+
+[[entries]]
+text = "VS Code"
+icon = "code"
+actions = { "open" = "code" }
+
+[[entries]]
+text = "Lock Screen"
+icon = "system-lock-screen"
+actions = { "lock" = "loginctl lock-session" }
+
+[[entries]]
+text = "Suspend"
+icon = "system-suspend"
+actions = { "suspend" = "systemctl suspend" }
+
+[[entries]]
+text = "Reboot"
+icon = "system-reboot"
+actions = { "reboot" = "systemctl reboot" }
+
+[[entries]]
+text = "Shutdown"
+icon = "system-shutdown"
+actions = { "shutdown" = "systemctl poweroff" }

@@ -15,16 +15,16 @@ scrollbar {
 }
 
 .normal-icons {
-  -gtk-icon-size: 18px;
+  -gtk-icon-size: 32px; /* Larger than default */
 }
 
 .large-icons {
-  -gtk-icon-size: 36px;
+  -gtk-icon-size: 48px; /* Even larger */
 }
 
 .box-wrapper {
   background: alpha(@background, 0.95);
-  padding: 16px;
+  padding: 20px;
   border: 2px solid alpha(@border, 0.6);
   border-radius: 16px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
@@ -38,21 +38,21 @@ scrollbar {
 
 .search-container {
   background: alpha(@base, 0.8);
-  padding: 12px 16px;
+  padding: 14px 18px;
   border-radius: 12px;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
   border: 2px solid alpha(@selected-text, 0.5);
 }
 
 .input placeholder {
   opacity: 0.5;
   color: alpha(@selected-text, 0.7);
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .input {
-  padding: 4px 8px;
-  font-size: 16px;
+  padding: 6px 10px;
+  font-size: 17px;
 }
 
 .input:focus,
@@ -65,6 +65,8 @@ scrollbar {
 }
 
 .placeholder {
+  font-size: 18px;
+  color: rgba(205, 214, 244, 0.7);
 }
 
 .scroll {
@@ -79,77 +81,60 @@ child > * {
 }
 
 child:hover .item-box {
-  background: rgba(49, 50, 68, 0.6); /* Catppuccin Mocha Surface1 */
-  border-radius: 10px;
+  background: rgba(49, 50, 68, 0.7); /* Slightly darker on hover */
+  border-radius: 12px;
 }
 
 child:selected .item-box {
-  background: rgba(137, 180, 250, 0.2); /* Catppuccin Mocha Blue */
-  border-radius: 10px;
-  border-left: 3px solid rgba(137, 180, 250, 1); /* Catppuccin Blue accent */
+  background: rgba(137, 180, 250, 0.25); /* More emphasis */
+  border-radius: 12px;
+  border-left: 4px solid rgba(137, 180, 250, 1); /* Thicker border */
 }
 
 child:selected .item-box * {
   color: @selected-text;
 }
 
+/* Image list - compact with adequate spacing */
 .item-box {
-  padding: 10px 14px;
-  margin: 2px 0;
+  padding: 12px 16px;
+  margin: 3px 0;
   transition: all 0.2s ease;
+  min-height: 50px;
 }
 
 .item-text-box {
-  all: unset;
   padding: 4px 0;
 }
 
 .item-text {
-  font-weight: 500;
+  font-weight: 600;
   font-size: 15px;
+  color: rgba(205, 214, 244, 1);
+  line-height: 1.4;
 }
 
 .item-subtext {
-  font-size: 0px;
-  min-height: 0px;
-  margin: 0px;
-  padding: 0px;
+  font-size: 0px; /* Hidden */
+  opacity: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .item-image {
-  margin-right: 16px;
+  margin-right: 14px;
   -gtk-icon-transform: scale(1.0);
   opacity: 0.95;
 }
 
 .current {
   font-style: italic;
-  color: rgba(180, 190, 254, 0.9); /* Catppuccin Lavender */
-}
-
-.prefix-hints {
-  background: rgba(30, 30, 46, 0.9); /* Catppuccin Mocha Surface0 */
-  padding: 12px 16px;
-  margin-top: 8px;
-  border-radius: 10px;
-  border: 2px solid rgba(148, 226, 213, 0.4); /* Catppuccin Teal */
-  font-size: 14px;
-  color: rgba(205, 214, 244, 0.95); /* Catppuccin Text */
-  letter-spacing: 0.5px;
-}
-
-.keybind-hints {
-  background: rgba(30, 30, 46, 0.8); /* Catppuccin Mocha Surface0 */
-  padding: 10px 14px;
-  margin-top: 8px;
-  border-radius: 10px;
-  border: 2px solid rgba(180, 190, 254, 0.35); /* Catppuccin Lavender - 밝게 */
-  font-size: 13px;
+  color: rgba(180, 190, 254, 0.9);
 }
 
 .keybinds {
-  padding-top: 10px;
-  padding-bottom: 6px;
+  padding-top: 12px;
+  padding-bottom: 8px;
   border-top: 1px solid rgba(49, 50, 68, 0.6);
   font-size: 13px;
   color: rgba(205, 214, 244, 0.9);
@@ -185,7 +170,6 @@ child:selected .item-box * {
 
 .keybind-button:hover {
   opacity: 1;
-  cursor: pointer;
 }
 
 .keybind-bind {
@@ -206,10 +190,22 @@ child:selected .item-box * {
   margin-right: 0px;
 }
 
+/* Large and prominent preview area */
 .preview {
-  background: rgba(30, 30, 46, 0.8); /* Catppuccin Mocha Surface0 */
-  border-radius: 10px;
-  padding: 12px;
-  border: 2px solid rgba(180, 190, 254, 0.35); /* Catppuccin Lavender - 밝게 */
+  background: rgba(17, 17, 27, 0.95); /* Darker background */
+  border-radius: 12px;
+  padding: 20px;
+  border: 2px solid rgba(137, 180, 250, 0.5); /* Blue border */
+  min-width: 900px;
+  min-height: 650px;
 }
 
+.preview image {
+  border-radius: 8px;
+}
+
+.scroll {
+  border-right: 2px solid rgba(49, 50, 68, 0.5);
+  margin-right: 16px;
+  padding-right: 0;
+}
