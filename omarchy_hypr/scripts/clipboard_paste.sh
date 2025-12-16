@@ -1,28 +1,24 @@
 #!/bin/zsh
 # Walker clipboard manager with smart auto-paste
 
-# Get the active window class before opening walker
+# Store the active window address and class before opening walker
+active_address=$(hyprctl activewindow -j | jq -r '.address')
 active_class=$(hyprctl activewindow -j | jq -r '.class')
 
 # Launch walker clipboard and wait for it to finish
 walker -m clipboard
 
-# Wait for walker to fully close
-while pgrep -x walker > /dev/null 2>&1; do
-    sleep 0.05
-done
+#wait for clipboard change
+sleep 0.1
 
-# Give time for focus to return to the original window
-sleep 0.2
-
-# Check if it's a terminal and send appropriate paste shortcut
+# Check if it's a terminal and send appropriate paste shortcut to the original window
 case "$active_class" in
     *kitty*|*alacritty*|*wezterm*|*foot*|*ghostty*|*term*)
         # Terminal: use Ctrl+Shift+V
-        hyprctl dispatch sendshortcut CTRL+SHIFT, V,
+        hyprctl dispatch sendshortcut CTRL+SHIFT, V, address:$active_address
         ;;
     *)
         # Other apps: use Ctrl+V
-        hyprctl dispatch sendshortcut CTRL, V,
+        hyprctl dispatch sendshortcut CTRL, V, address:$active_address
         ;;
 esac
