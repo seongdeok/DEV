@@ -5,10 +5,18 @@
 active_address=$(hyprctl activewindow -j | jq -r '.address')
 active_class=$(hyprctl activewindow -j | jq -r '.class')
 
-# Launch walker clipboard and wait for it to finish
-walker -m clipboard
+# Launch walker clipboard
+walker -m clipboard 
+LOG=`hyprctl clients -j`
+echo $LOG > /tmp/log
 
-#wait for clipboard change
+# Wait for walker window to close by checking hyprctl clients
+while hyprctl clients -j | jq -e '.[] | select(.class == "walker")' > /dev/null 2>&1; do
+    hyprctl dispatch sendshortcut , X, address:0x55e2f09232d0
+    sleep 0.2
+done
+
+# Small delay to ensure clipboard is updated
 sleep 0.1
 
 # Check if it's a terminal and send appropriate paste shortcut to the original window

@@ -9,3 +9,6 @@ macos-option-as-alt = true
 #font-family = "Hack Nerd Font Mono Regular"
 font-family = "JetBrainsMono Nerd Font"
 theme = "Catppuccin Frappe"
+
+# Slowdown mouse scrolling
+mouse-scroll-multiplier = 0.95
