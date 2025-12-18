@@ -3,7 +3,7 @@ add_text_if_none() {
   local file="$1"
   local text="$2"
   if [ ! -f "$file" ]; then
-    echo "$text" > "file"
+    echo "$text" > "$file"
     return
   fi
   if ! grep -Fxq "$text" "$file"; then
@@ -15,9 +15,10 @@ add_text_if_none() {
 
 sudo pacman -S --needed --noconfirm adobe-source-han-sans-kr-fonts adobe-source-han-serif-kr-fonts ttf-material-icons
 sudo pacman -S --needed --noconfirm cscope universal-ctags curl ttf-font-awesome ghostty bluez bluez-utils 
-yay -S --needed --noconfirm ttf-hack-nerd ttf-nerd-fonts-symbols-mono tmux neovim ripgrep waynergy google-chrome ttf-nanum ripgrep ghostty visual-studio-code-bin
+yay -S --needed --noconfirm ttf-hack-nerd ttf-nerd-fonts-symbols-mono tmux neovim ripgrep waynergy google-chrome ttf-nanum ghostty visual-studio-code-bin
 yay -S --needed --noconfirm zoxide yazi fd bat eza ripgrep btop duf dust procs tldr nodejs npm zip unzip nwg-displays
 yay -S --needed --noconfirm wezterm-git lua-language-server swaync
+yay -S --needed --noconfirm fcitx5 fcitx5-configtool fcitx5-qtk fcitx5-hangul fcitx5-qt 
 mkdir -p $HOME/.config/tmux
 mkdir -p $HOME/.config/.tmux
 # nvim
@@ -72,6 +73,19 @@ add_text_if_none "$HOME/.config/hypr/hyprland.conf" "source = $HOME/.config/hypr
 add_text_if_none "$HOME/.config/hypr/hyprland.conf" "source = $HOME/.config/hypr/omarchy_hypr/keybinds.conf"
 add_text_if_none "$HOME/.config/hypr/hyprland.conf" "source = $HOME/.config/hypr/omarchy_hypr/general.conf"
 add_text_if_none "$HOME/.config/hypr/hyprland.conf" "source = $HOME/.config/hypr/omarchy_hypr/rules.conf"
+
+# Hyprland plugins (HyprExpo workspace overview)
+if command -v hyprpm >/dev/null 2>&1; then
+  hyprpm update || true
+  hyprpm add https://github.com/hyprwm/hyprland-plugins || true
+  hyprpm enable hyprexpo || true
+  hyprpm reload || true
+
+  # Ensure plugins get loaded on login (keybinds calling hyprexpo rely on this)
+  if [ -f "$HOME/.config/hypr/omarchy_hypr/execs.conf" ]; then
+    add_text_if_none "$HOME/.config/hypr/omarchy_hypr/execs.conf" "exec-once = hyprpm reload"
+  fi
+fi
 
 rm -rf $HOME/.config/waybar
 ln -s $PWD/waybar $HOME/.config/waybar
