@@ -27,6 +27,17 @@
             <property name="hexpand">true</property>
             <property name="spacing">10</property>
             <child>
+              <!-- Title describing the current list (e.g., "Workspaces") -->
+              <object class="GtkLabel" id="ListTitle">
+                <style>
+                  <class name="list-title"></class>
+                </style>
+                <property name="label">Workspaces</property>
+                <property name="halign">start</property>
+                <property name="hexpand">true</property>
+              </object>
+            </child>
+            <child>
               <object class="GtkBox" id="SearchContainer">
                 <style>
                   <class name="search-container"></class>

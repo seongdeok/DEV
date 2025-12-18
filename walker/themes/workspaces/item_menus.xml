@@ -6,30 +6,63 @@
       <class name="item-box"></class>
       <class name="menus"></class>
     </style>
-    <property name="orientation">vertical</property>
-    <property name="spacing">2</property>
+    <property name="orientation">horizontal</property>
+    <property name="spacing">12</property>
+
+    <!-- Left column: big workspace ID / primary text -->
     <child>
-      <object class="GtkLabel" id="ItemText">
-        <style>
-          <class name="item-text"></class>
-        </style>
-        <property name="wrap">false</property>
-        <property name="xalign">0.5</property>
-        <property name="valign">center</property>
-        <property name="ellipsize">3</property>
+      <object class="GtkBox" id="ItemIdBox">
+        <property name="orientation">vertical</property>
+        <property name="hexpand">false</property>
+        <property name="halign">start</property>
+        <child>
+          <object class="GtkLabel" id="ItemText">
+            <style>
+              <class name="item-text"></class>
+              <class name="item-id"></class>
+            </style>
+            <property name="wrap">false</property>
+            <property name="xalign">0.5</property>
+            <property name="valign">center</property>
+            <property name="ellipsize">3</property>
+          </object>
+        </child>
       </object>
     </child>
+
+    <!-- Right column: optional name + subtext -->
     <child>
-      <object class="GtkLabel" id="ItemSubtext">
-        <style>
-          <class name="item-subtext"></class>
-        </style>
-        <property name="wrap">false</property>
-        <property name="valign">center</property>
-        <property name="xalign">0.5</property>
-        <property name="ellipsize">3</property>
+      <object class="GtkBox" id="ItemRight">
+        <property name="orientation">vertical</property>
+        <property name="hexpand">true</property>
+        <property name="halign">fill</property>
+
+        <child>
+          <object class="GtkLabel" id="ItemName">
+            <style>
+              <class name="item-name"></class>
+            </style>
+            <property name="wrap">false</property>
+            <property name="xalign">0</property>
+            <property name="valign">center</property>
+            <property name="ellipsize">3</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkLabel" id="ItemSubtext">
+            <style>
+              <class name="item-subtext"></class>
+            </style>
+            <property name="wrap">true</property>
+            <property name="valign">center</property>
+            <property name="xalign">0</property>
+            <property name="ellipsize">3</property>
+          </object>
+        </child>
       </object>
     </child>
+
     <child>
       <object class="GtkLabel" id="QuickActivation">
         <style>
@@ -37,7 +70,7 @@
         </style>
         <property name="wrap">false</property>
         <property name="valign">center</property>
-        <property name="xalign">0</property>
+        <property name="xalign">1</property>
         <property name="yalign">0.5</property>
       </object>
     </child>

@@ -71,6 +71,10 @@ providerlist = [
   { action = "activate", default = true, bind = "Return", after = "ClearReload" },
 ]
 
+workspaces = [
+  { action = "focus", default = true, bind = "Return", after = "KeepOpen" },
+]
+
 bluetooth = [
   { action = "find", global = true, bind = "ctrl f", after = "AsyncClearReload" },
   { action = "trust", bind = "ctrl t", after = "AsyncReload" },
