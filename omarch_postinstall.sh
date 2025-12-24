@@ -90,3 +90,15 @@ fi
 rm -rf $HOME/.config/waybar
 ln -s $PWD/waybar $HOME/.config/waybar
 
+
+# Set Ghostty as default terminal
+echo "Setting Ghostty as default terminal..."
+mkdir -p "$HOME/.config"
+TERMINALS_LIST="$HOME/.config/xdg-terminals.list"
+if [ -f "$TERMINALS_LIST" ]; then
+    # Remove if exists to avoid duplicates, then prepend to ensure it is the default
+    sed -i '/com.mitchellh.ghostty.desktop/d' "$TERMINALS_LIST"
+    sed -i '1i com.mitchellh.ghostty.desktop' "$TERMINALS_LIST"
+else
+    echo "com.mitchellh.ghostty.desktop" > "$TERMINALS_LIST"
+fi
