@@ -61,9 +61,12 @@ automatically-unhide-macos-hidden-apps = true
 # run = 'layout floating'
 
 [[on-window-detected]]
-if.app-name-regex-substring = 'Google Chrome'
-if.window-title-regex-substring = 'LGenie.AI - Google Chrome'
+if.app-name-regex-substring = 'Chromium'
 run = 'layout floating'
+
+#[[on-window-detected]]
+#if.window-title-regex-substring = 'LGenie.AI'
+#run = 'layout floating'
 
 [[on-window-detected]]
 if.app-id = 'org.mozilla.firefox'
@@ -161,6 +164,7 @@ outer.right =      5
 # '''
 
 #cmd-h = [] #Disable hide application
+
 cmd-space = ['exec-and-forget /usr/bin/python3 /Users/duk0668/dotfiles/ai_front.py >> /tmp/log.txt 2>&1']
 alt-f = 'fullscreen'
 alt-shift-f = 'layout floating tiling'
@@ -200,8 +204,15 @@ alt-6 = 'workspace 6'
 alt-7 = 'workspace 7'
 alt-8 = 'workspace 8'
 
+<<<<<<< Updated upstream
 alt-leftSquareBracket = 'exec-and-forget aerospace workspace prev || { current=$(aerospace list-monitors --focused | awk -F"|" "{print \$1}" | xargs); total=$(aerospace list-monitors --count); prev_mon=$((current - 1)); if [ $prev_mon -lt 1 ]; then prev_mon=$total; fi; last_ws=$(aerospace list-workspaces --monitor $prev_mon | tail -n1); aerospace workspace "$last_ws"; }'
 alt-rightSquareBracket = 'exec-and-forget aerospace workspace next || { current=$(aerospace list-monitors --focused | awk -F"|" "{print \$1}" | xargs); total=$(aerospace list-monitors --count); next_mon=$((current + 1)); if [ $next_mon -gt $total ]; then next_mon=1; fi; first_ws=$(aerospace list-workspaces --monitor $next_mon | head -n1); aerospace workspace "$first_ws"; }'
+=======
+#alt-leftSquareBracket = 'workspace prev --wrap-around'
+#alt-rightSquareBracket = 'workspace next --wrap-around'
+alt-leftSquareBracket = 'exec-and-forget ~/.config/aerospace/workspace_cycle.sh prev'
+alt-rightSquareBracket = 'exec-and-forget ~/.config/aerospace/workspace_cycle.sh next'
+>>>>>>> Stashed changes
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-shift-1 = 'move-node-to-workspace 1 --focus-follows-window'
 alt-shift-2 = 'move-node-to-workspace 2 --focus-follows-window'
@@ -232,6 +243,7 @@ alt-shift-semicolon = 'exec-and-forget ~/.config/aerospace/aerospace_set_next_mo
 # ]
 alt-shift-enter = 'mode apps'
 
+alt-c = 'exec-and-forget /Applications/Chromium.app/Contents/MacOS/Chromium --app="https://lge.exaone.ai"'
 alt-e = 'exec-and-forget open -n ~'
 alt-t = 'exec-and-forget open -na /Applications/Wezterm.app'
 #alt-t = ['exec-and-forget osascript ~/dotfiles/launch_terminal.applescript', 'exec-and-forget aerospace move-node-to-workspace $(aerospace list-workspaces --focused)']
@@ -263,3 +275,4 @@ alt-shift-semicolon = 'exec-and-forget ~/.config/aerospace/aerospace_set_next_mo
     6 = 'secondary'
     7 = 'secondary'
     8 = 'secondary'
+    S = 'secondary' 

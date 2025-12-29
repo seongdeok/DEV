@@ -1,67 +1,33 @@
-import subprocess
+-- 고유 프로필 경로 (태그 역할)
+set profileDir to "/tmp/chromium_lge_exaone"
+set appURL to "https://lge.exaone.ai"
+set appName to "Chromium"
 
+-- 실행 여부 확인 (고유 프로필 경로로 판별)
+set isRunning to false
+try
+    set procList to do shell script "ps aux | grep '" & profileDir & "' | grep -v grep"
+    if procList is not "" then set isRunning to true
+end try
 
-def run_cmd(cmd):
-    ret = subprocess.run(cmd, shell=True, capture_output=True, text=True)
-    print(cmd)
-    print(ret.stdout)
-    return ret.stdout.strip()
-
-
-def get_current_workspace():
-    return run_cmd("/usr/local/bin/aerospace list-workspaces --focused")
-
-
-def focus_window_id(id):
-    ret = run_cmd(f"/usr/local/bin/aerospace focus --window-id {id}")
-    return ret
-
-
-def move_to_workspace(id, workspace, focus):
-    if focus:
-        param = "--focus-follows-window"
-    else:
-        param = ""
-    ret = run_cmd(
-        f"/usr/local/bin/aerospace move-node-to-workspace {param} --window-id {id} {workspace}"
-    )
-    return ret
-
-
-class windows:
-    def __init__(self, id, title, fullscreen, name, workspace):
-        self.id = id
-        self.title = title
-        self.fullscreen = fullscreen
-        self.name = name
-        self.workspace = workspace
-
-    @staticmethod
-    def get_all_window():
-        res = run_cmd(
-            '/usr/local/bin/aerospace list-windows --all --format "%{window-id}|%{window-title}|%{window-is-fullscreen}|%{app-name}|%{workspace}" '
-        )
-        list = res.strip().split("\n")
-        print(list)
-        window_list = []
-        for str in list:
-            info = str.split("|")
-            print(info)
-            window_list.append(windows(info[0], info[1], info[2], info[3], info[4]))
-        return window_list
-
-    @staticmethod
-    def get_window_with_title(title):
-        all_windows = windows.get_all_window()  # Get all windows
-        matching_window = next(
-            (window for window in all_windows if title in window.title), None
-        )
-        return matching_window
-
-
-ai_window = windows.get_window_with_title("LGenie.AI")
-cur_workspace = get_current_workspace()
-if ai_window and ai_window.workspace == cur_workspace:
-    move_to_workspace(ai_window.id, "x", False)
-else:
-    move_to_workspace(ai_window.id, cur_workspace, True)
+if isRunning then
+    -- 이미 실행 중이면 Aerospace로 workspace 이동
+    do shell script "/usr/local/bin/aerospace move-node-to-workspace 3"
+else
+    -- 새로 실행
+    do shell script "open -a '" & appName & "' --args --app=" & appURL & " --user-data-dir=" & profileDir
+    delay 1
+    -- 화면 중앙 배치
+    tell application "System Events"
+        tell application process appName
+            set win to window 1
+            set {screenWidth, screenHeight} to {1440, 900} -- 모니터 해상도
+            set winWidth to 1000
+            set winHeight to 700
+            set posX to (screenWidth - winWidth) / 2
+            set posY to (screenHeight - winHeight) / 2
+            set position of win to {posX, posY}
+            set size of win to {winWidth, winHeight}
+        end tell
+    end tell
+end if

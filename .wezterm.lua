@@ -111,8 +111,8 @@ end)
 
 return {
 	enable_wayland = false,
-	front_end = "OpenGL",
-	--front_end = "WebGpu",
+	--front_end = "OpenGL",
+	front_end = "WebGpu",
 	adjust_window_size_when_changing_font_size = false,
 	-- color_scheme = 'termnial.sexy',
 	color_scheme = "Catppuccin Mocha",
