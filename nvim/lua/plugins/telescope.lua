@@ -9,23 +9,32 @@ return {
 
 			telescope.setup({
 				defaults = {
-          hidden = true,
-          no_ignore = true,
-          follow = true,
-          find_command = {
-            "fd",
-            "-H",
-            "-I",
-            "-L",
-            "--type", "f",
-            "--exclude", ".git",
-          },
-          vimgrep_arguments = {
-            "rg", "--color=never", "--no-heading", "--with-filename",
-            "--line-number", "--column", "--smart-case",
-            "-L", "-uuu",
-            "--glob", "!.git/*"
-          },
+					hidden = true,
+					no_ignore = true,
+					follow = true,
+					find_command = {
+						"fd",
+						"-H",
+						"-I",
+						"-L",
+						"--type",
+						"f",
+						"--exclude",
+						".git",
+					},
+					vimgrep_arguments = {
+						"rg",
+						"--color=never",
+						"--no-heading",
+						"--with-filename",
+						"--line-number",
+						"--column",
+						"--smart-case",
+						"-L",
+						"-uuu",
+						"--glob",
+						"!.git/*",
+					},
 					mappings = {
 						i = {
 							["<C-j>"] = actions.move_selection_next,
@@ -44,23 +53,23 @@ return {
 			})
 			-- vim.keymap.set("n", "<C-p>", builtin.find_files, { desc = "Telescope find files" })
 			-- vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })
-      vim.keymap.set("n", "<C-p>", function()
-        builtin.find_files({
-          cwd       = vim.loop.cwd(),
-          hidden    = true,
-          no_ignore = true,
-          follow    = true,
-        })
-      end, { desc = "Telescope find files" })
+			vim.keymap.set("n", "<C-p>", function()
+				builtin.find_files({
+					cwd = vim.loop.cwd(),
+					hidden = true,
+					no_ignore = true,
+					follow = true,
+				})
+			end, { desc = "Telescope find files" })
 
-      vim.keymap.set("n", "<leader>fg", function()
-        builtin.live_grep({
-          cwd       = vim.loop.cwd(),
-          hidden    = true,
-          no_ignore = true,
-          follow    = true,
-        })
-      end, { desc = "Telescope live grep" })
+			vim.keymap.set("n", "<leader>fg", function()
+				builtin.live_grep({
+					cwd = vim.loop.cwd(),
+					hidden = true,
+					no_ignore = true,
+					follow = true,
+				})
+			end, { desc = "Telescope live grep" })
 
 			vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" })
 			vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })

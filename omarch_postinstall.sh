@@ -19,6 +19,8 @@ yay -S --needed --noconfirm ttf-hack-nerd ttf-nerd-fonts-symbols-mono tmux neovi
 yay -S --needed --noconfirm zoxide yazi fd bat eza ripgrep btop duf dust procs tldr nodejs npm zip unzip nwg-displays
 yay -S --needed --noconfirm wezterm-git lua-language-server swaync
 yay -S --needed --noconfirm fcitx5 fcitx5-configtool fcitx5-qtk fcitx5-hangul fcitx5-qt 
+yay -S --needed --noconfirm keyd
+sudo ln -s $PWD/keyd_default.conf /etc/keyd/default.conf
 mkdir -p $HOME/.config/tmux
 mkdir -p $HOME/.config/.tmux
 # nvim
