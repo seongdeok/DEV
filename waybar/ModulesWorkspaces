@@ -239,6 +239,8 @@
 		"title<virtualbox>": "💽 ",
 		"class<remmina|org.remmina.Remmina>": "🖥️ ",
 
+    "class<vsclient>" : "󰞵",
+    "class<teams-for-linux>" : "󰊻",
 		"class<VSCode|code|code-url-handler|code-oss|codium|codium-url-handler|VSCodium>": "󰨞 ",
 		"class<dev.zed.Zed>": "󰵁",
 		"class<codeblocks>": "󰅩 ",

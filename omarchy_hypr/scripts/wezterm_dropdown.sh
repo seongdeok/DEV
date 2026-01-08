@@ -56,8 +56,8 @@ move_to_workspace() {
     POS_Y=$(echo "$MONITOR_INFO" | jq '.y')
 
     local TARGET_W TARGET_H TARGET_X TARGET_Y
-    TARGET_W=$(( RES_X * 70 / 100 ))
-    TARGET_H=$(( RES_Y * 50 / 100 ))
+    TARGET_W=$(( RES_X * 80 / 100 ))
+    TARGET_H=$(( RES_Y * 60 / 100 ))
     TARGET_X=$(( POS_X + (RES_X - TARGET_W) / 2 ))
     TARGET_Y=$(( POS_Y + (RES_Y - TARGET_H) / 2 ))
     
