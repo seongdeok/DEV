@@ -1,0 +1,26 @@
+;; KMonad config for Waynergy uinput keyboard
+;; Uses a stable symlink ($HOME/.cache/kmonad-waynergy-kbd) that is updated by a systemd ExecStartPre.
+
+(defcfg
+  input  (device-file "/home/duk0669/.cache/kmonad-waynergy-kbd")
+  output (uinput-sink "kmonad-waynergy-virtual-keyboard")
+  fallthrough true
+)
+
+(defsrc
+  caps esc a s h j k l
+)
+
+(defalias
+  capsnav (tap-hold-next 200 esc (layer-toggle vim_nav))
+  a_ctl   (tap-hold-next-release 220 a lctl)
+  s_sup   (tap-hold-next-release 220 s lmet)
+)
+
+(deflayer base
+  @capsnav caps @a_ctl @s_sup h j k l
+)
+
+(deflayer vim_nav
+  _ _ _ _ C-left C-down C-up C-rght
+)

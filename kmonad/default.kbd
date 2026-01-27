@@ -1,0 +1,28 @@
+;; KMonad config equivalent to /etc/keyd/default.conf
+;; - Caps: tap -> Esc, hold -> vim_nav layer
+;; - Esc -> Caps
+;; - In vim_nav layer: h/j/k/l -> Ctrl+Left/Down/Up/Right
+
+(defcfg
+  input  (device-file "/dev/input/by-path/platform-i8042-serio-0-event-kbd")
+  output (uinput-sink "kmonad-virtual-keyboard")
+  fallthrough true
+)
+
+(defsrc
+  caps esc a s h j k l
+)
+
+(defalias
+  capsnav (tap-hold-next 200 esc (layer-toggle vim_nav))
+  a_ctl   (tap-hold-next-release 220 a lctl)
+  s_sup   (tap-hold-next-release 220 s lmet)
+)
+
+(deflayer base
+  @capsnav caps @a_ctl @s_sup h j k l
+)
+
+(deflayer vim_nav
+  _ _ _ _ C-left C-down C-up C-rght
+)
