@@ -64,6 +64,15 @@ scrollbar {
 .content-container {
 }
 
+.elephant-hint {
+  font-size: 0px;
+  opacity: 0;
+  margin: 0;
+  padding: 0;
+  min-height: 0;
+  min-width: 0;
+}
+
 .placeholder {
   font-size: 18px;
   color: rgba(205, 214, 244, 0.7);
@@ -122,9 +131,13 @@ child:selected .item-box * {
 }
 
 .item-image {
-  margin-right: 14px;
-  -gtk-icon-transform: scale(1.0);
-  opacity: 0.95;
+  font-size: 0px;
+  opacity: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+  min-height: 0;
+  -gtk-icon-size: 0px;
 }
 
 .current {

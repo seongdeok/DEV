@@ -1,0 +1,51 @@
+ Year 1 – Mixed-Criticality 도입
+	1.	ADAS와 Non-Critical 워크로드를 VM 단위로 분리한다
+	2.	ADAS VM에 우선 실행 권한을 부여한다
+	3.	CPU·메모리 자원 간섭을 계측하고 제한한다
+	4.	VM 간 접근 경계를 강제한다
+	5.	Non-Critical 장애를 VM 내부로 제한한다
+
+⸻
+
+🟡 Year 2 – Centralized Mixed-Criticality HPC
+	1.	기능을 VM 단위로 중앙 HPC에 재배치한다
+	2.	VM 생명주기를 독립적으로 제어한다
+	3.	Safety VM을 다른 VM과 완전히 격리한다
+	4.	장애 전파를 VM 경계에서 차단한다
+	5.	ASIL-D 분리 논리를 시스템 구조에 반영한다
+
+⸻
+
+🟠 Year 3 – AI 인지 Mixed-Criticality
+	1.	ADAS AI와 비안전 AI를 VM 수준에서 분리한다
+	2.	가속기를 워크로드 유형별로 할당한다
+	3.	AI 실행으로 인한 자원 간섭을 차단한다
+	4.	ADAS VM을 무정지로 재기동한다
+	5.	실행 중 VM 무결성을 지속 검증한다
+
+⸻
+
+🔵 Year 4 – 고도화된 가상화 운용
+	1.	연산 자원을 실행 중 재분배한다
+	2.	다중 ADAS VM을 병렬 운용한다
+	3.	이종 AI 워크로드를 동시에 수용한다
+	4.	외부 워크로드를 안전하게 격리한다
+	5.	가상화 경계를 통해 기능 확장을 흡수한다
+
+⸻
+
+🟣 Year 5 – ADV-HPC 가상화 성숙 단계
+	1.	Mixed-Criticality 구성을 차량 단위로 확장한다
+	2.	ADAS 기능을 가상화 단위로 중복 운용한다
+	3.	장애 상황에서도 AD 연산을 유지한다
+	4.	장기 운용을 고려한 VM 구조를 고정한다
+	5.	차세대 HW 교체를 가상화 계층으로 흡수한다
+
+
+  Mixed criticality
+  - Resource partiting및 모니터링 기술
+
+고속 Inter VM Communication 기술 확보
+고속 IVC기반의 Resource 공유 기술 확보
+
+AIDV를 위한 

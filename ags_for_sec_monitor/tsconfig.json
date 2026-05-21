@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "ags/gtk4",
+    "lib": [
+      "ES2022"
+    ],
+    "module": "ES2022",
+    "moduleResolution": "Bundler",
+    "paths": {
+      "ags": [
+        "./.ags/lib/index.d.ts"
+      ],
+      "ags/*": [
+        "./.ags/lib/*.d.ts"
+      ]
+    },
+    "strict": true,
+    "target": "ES2020"
+  }
+}

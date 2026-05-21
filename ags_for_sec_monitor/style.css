@@ -1,0 +1,115 @@
+/* ============================================================
+   sec-monitor-dashboard  |  터치 친화적 스타일
+   세컨더리 모니터 논리 해상도: ~1200x675 (1920x1080 @ scale 1.6)
+   Catppuccin Mocha 팔레트 기반
+   ============================================================ */
+
+* {
+  font-family: "JetBrains Mono", "Noto Sans KR", monospace;
+  font-size: 14px;
+  color: #cdd6f4;
+  -gtk-icon-style: regular;
+}
+
+/* ── 루트 윈도우 ─────────────────────────────────────────── */
+.Dashboard {
+  background-color: #1e1e2e;
+}
+
+.dashboard-container {
+  padding: 28px 32px;
+}
+
+.content-area {
+  padding: 8px 0;
+}
+
+/* ── 섹션 타이틀 ─────────────────────────────────────────── */
+.section-title {
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  color: #585b70;
+  margin-bottom: 12px;
+}
+
+/* ── Clock ───────────────────────────────────────────────── */
+.clock-widget {
+  padding: 12px 0 24px;
+}
+
+.clock-time {
+  font-size: 80px;
+  font-weight: bold;
+  color: #cba6f7;
+  margin-bottom: 4px;
+}
+
+.clock-date {
+  font-size: 17px;
+  color: #a6e3a1;
+}
+
+/* ── SystemStats ─────────────────────────────────────────── */
+.sysstat-widget {
+  padding: 0 0 24px;
+}
+
+.stat-row {
+  /* 가로 배치 */
+}
+
+.stat-card {
+  background-color: rgba(255, 255, 255, 0.04);
+  border-radius: 14px;
+  padding: 18px 28px;
+  min-width: 110px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.stat-label {
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: #7f849c;
+  margin-bottom: 6px;
+}
+
+.stat-value {
+  font-size: 30px;
+  font-weight: bold;
+  color: #89dceb;
+}
+
+/* ── Launcher ────────────────────────────────────────────── */
+.launcher-section {
+  padding-top: 8px;
+}
+
+.launcher-widget {
+  /* 가로 배치 */
+}
+
+.launcher-btn {
+  background-color: rgba(255, 255, 255, 0.06);
+  border-radius: 18px;
+  padding: 18px 14px;
+  min-width: 88px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  /* 터치 타겟: 최소 48px 이상 확보 */
+}
+
+.launcher-btn:hover {
+  background-color: rgba(203, 166, 247, 0.15);
+  border-color: rgba(203, 166, 247, 0.3);
+}
+
+/* GTK4에서 터치/클릭 피드백 */
+.launcher-btn:active {
+  background-color: rgba(203, 166, 247, 0.28);
+}
+
+.launcher-label {
+  font-size: 11px;
+  color: #bac2de;
+}

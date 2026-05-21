@@ -4,7 +4,7 @@ Icon = "image-x-generic"
 Cache = false
 Action = "xdg-open %VALUE%"
 Description = "Browse images from folder"
-SearchName = false
+SearchName = true
 
 function GetEntries()
 	local entries = {}
@@ -31,7 +31,7 @@ function GetEntries()
 					Text = filename,
 					Subtext = line,
 					Value = line,
-					Icon = "",
+					Icon = line, -- Use the image itself as the icon
 					Preview = line,
 					PreviewType = "file",
 					Actions = {

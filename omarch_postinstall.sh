@@ -93,6 +93,16 @@ rm -rf $HOME/.config/waybar
 ln -s $PWD/waybar $HOME/.config/waybar
 
 
+# AGS secondary monitor dashboard
+yay -S --needed --noconfirm aylurs-gtk-shell-git
+mkdir -p $HOME/dev
+rm -rf $HOME/dev/ags_for_sec_monitor
+ln -s $PWD/ags_for_sec_monitor $HOME/dev/ags_for_sec_monitor
+# @girs 타입 파일 생성 (IDE 자동완성용, 실행에는 불필요)
+cd $HOME/dev/ags_for_sec_monitor && ags types || true
+cd $OLDPWD
+
+
 # Set Ghostty as default terminal
 echo "Setting Ghostty as default terminal..."
 mkdir -p "$HOME/.config"

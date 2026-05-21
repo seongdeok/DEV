@@ -1,0 +1,276 @@
+#!/bin/bash
+
+# 사용법
+usage() {
+    echo "사용법: $0 <command> <title_pattern> <workspace_name>" >&2
+    echo "" >&2
+    echo "인자:" >&2
+    echo "  command         실행할 명령어 (예: 'code ~/.config/my-workspace')" >&2
+    echo "  title_pattern   창을 찾기 위한 title 패턴 (예: 'my-workspace')" >&2
+    echo "  workspace_name  special workspace 이름 (예: 'myapp')" >&2
+    echo "" >&2
+    echo "예시:" >&2
+    echo "  $0 'code ~/.config/my-workspace' 'my-workspace' 'myapp'" >&2
+    echo "  $0 'spotify' 'Spotify' 'spotify'" >&2
+    exit 1
+}
+
+# 인자 체크
+if [ $# -lt 3 ]; then
+    echo "에러: 3개의 인자가 필요합니다. (받은 인자: $#)" >&2
+    echo "" >&2
+    usage
+fi
+
+# 인자 저장
+COMMAND="$1"
+TITLE_PATTERN="$2"
+WORKSPACE_NAME="$3"
+TAG="DROPDOWN_${WORKSPACE_NAME^^}"  # 대문자로 변환
+
+# 창 찾기 설정
+CHECK_INTERVAL=0.2  # 체크 주기 (초)
+MAX_WAIT_SECONDS=5  # 최대 대기 시간 (초)
+MAX_ATTEMPTS=$(( MAX_WAIT_SECONDS * 10 / 2 ))  # 0.2초당 1회 체크
+
+# 로그 출력 위치 설정 (파일 경로 또는 &2)
+LOG_OUTPUT="${LOG_OUTPUT:-&2}"
+
+log() {
+    if [[ "$LOG_OUTPUT" == "&2" ]]; then
+        echo "$@" >&2
+    else
+        echo "$@" >> "$LOG_OUTPUT"
+    fi
+}
+
+move_to_workspace() {
+    local TARGET_WS="$1"
+
+    log "🔍 TARGET_WS=$TARGET_WS"
+
+    local WS_INFO
+    WS_INFO=$(hyprctl -j workspaces | jq ".[] | select(.name==\"$TARGET_WS\" or .id==$TARGET_WS)")
+    log "🧩 WS_INFO(from workspaces): $WS_INFO"
+
+    if [ -z "$WS_INFO" ]; then
+        WS_INFO=$(hyprctl -j monitors | jq ".[] | select(.activeWorkspace.name==\"$TARGET_WS\" or .activeWorkspace.id==$TARGET_WS) | .activeWorkspace")
+        log "🧩 WS_INFO(from monitors): $WS_INFO"
+    fi
+
+    if [ -z "$WS_INFO" ]; then
+        log "❌ workspace 정보를 찾을 수 없습니다: $TARGET_WS"
+        return 1
+    fi
+
+    local MONITOR_NAME
+    MONITOR_NAME=$(echo "$WS_INFO" | jq -r '.monitor')
+    log "🖥️ MONITOR_NAME=$MONITOR_NAME"
+
+    local MONITOR_INFO
+    MONITOR_INFO=$(hyprctl -j monitors | jq ".[] | select(.name==\"$MONITOR_NAME\")")
+    log "📺 MONITOR_INFO=$MONITOR_INFO"
+
+    if [ -z "$MONITOR_INFO" ]; then
+        log "❌ 모니터 정보를 찾을 수 없습니다: $MONITOR_NAME"
+        return 1
+    fi
+
+    local RES_X RES_Y POS_X POS_Y
+    RES_X=$(echo "$MONITOR_INFO" | jq '.width')
+    RES_Y=$(echo "$MONITOR_INFO" | jq '.height')
+    POS_X=$(echo "$MONITOR_INFO" | jq '.x')
+    POS_Y=$(echo "$MONITOR_INFO" | jq '.y')
+
+    local TARGET_W TARGET_H TARGET_X TARGET_Y
+    TARGET_W=$(( RES_X * 70 / 100 ))
+    TARGET_H=$(( RES_Y * 50 / 100 ))
+    TARGET_X=$(( POS_X + (RES_X - TARGET_W) / 2 ))
+    TARGET_Y=$(( POS_Y + (RES_Y - TARGET_H) / 2 ))
+    
+    echo "w,h,x,y = $TARGET_W $TARGET_H $TARGET_X $TARGET_Y" >> /tmp/dropterm
+    echo $MONITOR_INFO  >> /tmp/dropterm
+    echo $WS_INFO >> /tmp/dropterm
+    echo "res x,y = $RES_X,$RES_Y,  pos x,y=$POS_X , $POS_Y" >> /tmp/dropterm
+    hyprctl dispatch resizeactive exact $TARGET_W $TARGET_H
+    hyprctl dispatch moveactive exact $TARGET_X $TARGET_Y
+}
+
+launch_copilot_workspace() {
+    # 현재 워크스페이스 저장
+    local CURRENT_WS
+    CURRENT_WS=$(hyprctl -j activeworkspace | jq -r '.id')
+    log "💾 현재 워크스페이스 저장: $CURRENT_WS"
+    
+    # 현재 포커스된 창에 태그 달기 (복원용)
+    hyprctl dispatch tagwindow ${TAG}_FOCUS
+    
+    log "🚀 실행: $COMMAND"
+    eval "$COMMAND" &
+    
+    # 최대 대기 시간 동안 창 찾기
+    local ADDRESS=""
+    local ATTEMPT=0
+    
+    while [ $ATTEMPT -lt $MAX_ATTEMPTS ]; do
+        ADDRESS=$(hyprctl clients -j | jq -r ".[] | select(.title | contains(\"$TITLE_PATTERN\")) | .address")
+        
+        if [ -n "$ADDRESS" ]; then
+            log "✅ 창 발견: $ADDRESS (${ATTEMPT}번째 시도)"
+            break
+        fi
+        
+        ATTEMPT=$((ATTEMPT + 1))
+        sleep $CHECK_INTERVAL
+    done
+    
+    if [ -z "$ADDRESS" ]; then
+        log "❌ 창을 찾을 수 없습니다 (${MAX_WAIT_SECONDS}초 타임아웃)"
+        return 1
+    fi
+    
+    # dropdown 태그 달기
+    hyprctl dispatch tagwindow +$TAG address:$ADDRESS
+    
+    # floating으로 변경
+    hyprctl dispatch togglefloating address:$ADDRESS
+    log "🎈 floating 모드로 변경"
+    
+    # special workspace로 이동
+    hyprctl dispatch movetoworkspacesilent special:$WORKSPACE_NAME,address:$ADDRESS
+    log "🔄 special:$WORKSPACE_NAME workspace로 이동"
+    
+    # 해당 워크스페이스의 모니터 정보 가져오기
+    local WS_INFO
+    WS_INFO=$(hyprctl -j workspaces | jq ".[] | select(.id==$CURRENT_WS)")
+    
+    if [ -z "$WS_INFO" ]; then
+        log "⚠️ 워크스페이스 정보를 가져올 수 없습니다"
+        return 0
+    fi
+    
+    local MONITOR_NAME
+    MONITOR_NAME=$(echo "$WS_INFO" | jq -r '.monitor')
+    log "🖥️ 모니터: $MONITOR_NAME"
+    
+    local MONITOR_INFO
+    MONITOR_INFO=$(hyprctl -j monitors | jq ".[] | select(.name==\"$MONITOR_NAME\")")
+    
+    if [ -z "$MONITOR_INFO" ]; then
+        log "⚠️ 모니터 정보를 가져올 수 없습니다"
+        return 0
+    fi
+    
+    # 모니터 크기와 위치
+    local RES_X RES_Y POS_X POS_Y
+    RES_X=$(echo "$MONITOR_INFO" | jq '.width')
+    RES_Y=$(echo "$MONITOR_INFO" | jq '.height')
+    POS_X=$(echo "$MONITOR_INFO" | jq '.x')
+    POS_Y=$(echo "$MONITOR_INFO" | jq '.y')
+    
+    # 70% 크기 계산
+    local TARGET_W TARGET_H TARGET_X TARGET_Y
+    TARGET_W=$(( RES_X * 70 / 100 ))
+    TARGET_H=$(( RES_Y * 70 / 100 ))
+    TARGET_X=$(( POS_X + (RES_X - TARGET_W) / 2 ))
+    TARGET_Y=$(( POS_Y + (RES_Y - TARGET_H) / 2 ))
+    
+    log "📐 크기 조정: ${TARGET_W}x${TARGET_H}, 위치: (${TARGET_X}, ${TARGET_Y})"
+    
+    # 창 크기 조정 및 위치 이동
+    hyprctl dispatch resizewindowpixel exact $TARGET_W $TARGET_H,address:$ADDRESS
+    hyprctl dispatch movewindowpixel exact $TARGET_X $TARGET_Y,address:$ADDRESS
+    
+    # 포커스
+    hyprctl dispatch focuswindow address:$ADDRESS
+    
+    log "✨ dropdown 설정 완료"
+}
+
+# 메인 토글 로직
+toggle_copilot_workspace() {
+    # dropdown 태그를 가진 윈도우 찾기
+    local COPILOT_ADDRESS
+    COPILOT_ADDRESS=$(hyprctl clients -j | jq -r ".[] | select(.tags[]? == \"$TAG\") | .address" | head -n 1)
+    
+    if [ -z "$COPILOT_ADDRESS" ]; then
+        # 윈도우가 없으면 새로 실행
+        log "📦 dropdown이 없습니다. 새로 실행합니다."
+        launch_copilot_workspace
+        return
+    fi
+    
+    # 현재 포커스된 윈도우 확인
+    local ACTIVE_ADDRESS
+    ACTIVE_ADDRESS=$(hyprctl activewindow -j | jq -r '.address')
+    
+    if [ "$ACTIVE_ADDRESS" == "$COPILOT_ADDRESS" ]; then
+        # 포커스되어 있으면 숨기기
+        log "👋 dropdown을 숨깁니다"
+        
+        # 이전 포커스 찾기 (태그가 달린 창 찾기)
+        WIN_ID=$(hyprctl clients -j | jq -r ".[] | select(.tags[]? == \"${TAG}_FOCUS\") | .address" | head -n 1)
+        
+        if [ -n "$WIN_ID" ]; then
+            # 이전 창으로 포커스 이동 (이렇게 하면 special workspace가 자동으로 숨겨짐)
+            hyprctl dispatch focuswindow address:$WIN_ID
+            hyprctl dispatch tagwindow -${TAG}_FOCUS address:$WIN_ID
+        else
+            # 복원할 창이 없으면 그냥 special workspace 토글
+            log "⚠️ 복원할 창을 찾을 수 없습니다"
+            hyprctl dispatch togglespecialworkspace $WORKSPACE_NAME
+        fi
+    else
+        # 포커스되어 있지 않으면 띄우기
+        log "👀 dropdown을 띄웁니다"
+        
+        # 현재 워크스페이스 정보 가져오기
+        local CURRENT_WS
+        CURRENT_WS=$(hyprctl -j activeworkspace | jq -r '.id')
+        
+        # 현재 포커스 저장
+        hyprctl dispatch tagwindow ${TAG}_FOCUS
+        
+        # special workspace 토글
+        hyprctl dispatch togglespecialworkspace $WORKSPACE_NAME
+        
+        # 현재 워크스페이스의 모니터 정보로 크기/위치 조정
+        local WS_INFO
+        WS_INFO=$(hyprctl -j workspaces | jq ".[] | select(.id==$CURRENT_WS)")
+        
+        if [ -n "$WS_INFO" ]; then
+            local MONITOR_NAME
+            MONITOR_NAME=$(echo "$WS_INFO" | jq -r '.monitor')
+            
+            local MONITOR_INFO
+            MONITOR_INFO=$(hyprctl -j monitors | jq ".[] | select(.name==\"$MONITOR_NAME\")")
+            
+            if [ -n "$MONITOR_INFO" ]; then
+                local RES_X RES_Y POS_X POS_Y
+                RES_X=$(echo "$MONITOR_INFO" | jq '.width')
+                RES_Y=$(echo "$MONITOR_INFO" | jq '.height')
+                POS_X=$(echo "$MONITOR_INFO" | jq '.x')
+                POS_Y=$(echo "$MONITOR_INFO" | jq '.y')
+                
+                local TARGET_W TARGET_H TARGET_X TARGET_Y
+                TARGET_W=$(( RES_X * 70 / 100 ))
+                TARGET_H=$(( RES_Y * 70 / 100 ))
+                TARGET_X=$(( POS_X + (RES_X - TARGET_W) / 2 ))
+                TARGET_Y=$(( POS_Y + (RES_Y - TARGET_H) / 2 ))
+                
+                log "📐 크기 조정: ${TARGET_W}x${TARGET_H}, 위치: (${TARGET_X}, ${TARGET_Y})"
+                
+                # 창 크기 조정 및 위치 이동
+                hyprctl dispatch resizewindowpixel exact $TARGET_W $TARGET_H,address:$COPILOT_ADDRESS
+                hyprctl dispatch movewindowpixel exact $TARGET_X $TARGET_Y,address:$COPILOT_ADDRESS
+            fi
+        fi
+        
+        # 포커스
+        hyprctl dispatch focuswindow address:$COPILOT_ADDRESS
+    fi
+}
+
+# 스크립트 실행 시 토글
+toggle_copilot_workspace
+

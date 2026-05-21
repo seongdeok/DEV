@@ -1,0 +1,14 @@
+{
+  "name": "sec-monitor-dashboard",
+  "version": "1.0.0",
+  "description": "Secondary monitor touch dashboard for Hyprland (AGS v3)",
+  "scripts": {
+    "dev": "ags run app.tsx",
+    "start": "ags run app.tsx",
+    "bundle": "ags bundle app.tsx -o bundle.js",
+    "types": "ags types -u -d ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "GPL-3.0"
+}

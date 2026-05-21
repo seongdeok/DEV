@@ -64,6 +64,15 @@ scrollbar {
 .content-container {
 }
 
+.elephant-hint {
+  font-size: 0px;
+  opacity: 0;
+  margin: 0;
+  padding: 0;
+  min-height: 0;
+  min-width: 0;
+}
+
 .placeholder {
 }
 
